@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="240 505 420 350" role="img" aria-label="対応エリア地図">
+  <title>仏壇クリーニング・修復 対応エリア</title>
+  <desc>Geolonia (https://geolonia.com/) の地図データを利用。愛知県を拠点に中部・近畿エリアに対応。</desc>
+
+  <defs>
+    <!-- 拠点マーク用グロー -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- 対応エリア用ドロップシャドウ -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#3C2415" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 全体のtransform（元のGeolonia SVGと同じ座標系） -->
+  <g transform="matrix(1.028807, 0, 0, 1.028807, -47.544239, -28.806583)">
+    <g transform="translate(6, 18)">
+
+      <!-- =============================== -->
+      <!-- 対応エリア外（薄いグレー）       -->
+      <!-- =============================== -->
+
+      <!-- 新潟県 -->
+      <g transform="translate(518, 476)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <path d="M7,113 L4,102 L0,99 L14,94 L23,87 L30,87 L45,75 L55,60 L60,46 L79,34 L80,36 L79,35 L85,28 L94,0 L102,3 L102,10 L111,16 L109,20 L101,23 L101,31 L98,39 L101,44 L104,46 L95,56 L97,65 L89,65 L88,68 L79,69 L78,72 L80,76 L76,82 L81,87 L80,101 L73,94 L71,98 L67,99 L68,104 L65,105 L65,108 L53,114 L53,107 L48,103 L48,98 L45,96 L38,98 L33,103 L33,108 L29,106 L21,110 L19,109 L19,104 L12,103 L12,106 L7,113 Z M36,46 L28,47 L35,38 L33,35 L30,37 L30,31 L34,23 L43,14 L39,30 L46,31 L43,40 L36,46 Z"/>
+      </g>
+
+      <!-- 群馬県 -->
+      <g transform="translate(557, 570)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="64 52 54 54 48 50 37 48 32 58 16 67 12 65 12 59 9 56 12 55 10 49 13 47 12 41 3 41 0 36 1 29 6 25 5 23 14 20 26 14 26 11 29 10 28 5 32 4 34 0 41 7 49 9 47 12 50 14 47 17 46 26 54 29 48 42 53 49 62 48"/>
+      </g>
+
+      <!-- 山梨県 -->
+      <g transform="translate(546, 638)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="2 21 0 16 3 14 0 11 10 0 15 5 21 3 25 6 28 4 39 7 43 15 48 18 47 27 38 35 26 38 21 33 17 41 18 48 13 50 9 41 4 40 5 29"/>
+      </g>
+
+      <!-- 神奈川県 -->
+      <g transform="translate(584, 656)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="10 0 24 6 28 11 28 6 30 6 27 4 30 2 44 9 40 13 36 12 39 16 36 16 36 23 42 26 38 30 39 33 35 33 36 28 33 24 26 22 15 25 11 28 12 34 10 34 4 30 4 17 0 17 9 9"/>
+      </g>
+
+      <!-- 石川県 -->
+      <g transform="translate(448, 541)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <path d="M37,26 L34,23 L41,23 L37,26 Z M28,77 L31,80 L26,90 L21,91 L16,86 L6,85 L0,77 L15,62 L26,44 L27,33 L25,29 L25,24 L22,23 L27,10 L52,0 L56,1 L57,5 L51,6 L50,15 L46,14 L39,22 L37,18 L34,19 L32,28 L38,30 L41,26 L41,36 L33,38 L31,48 L28,50 L30,54 L28,57 L29,61 L27,69 L28,77 Z"/>
+      </g>
+
+      <!-- 富山県 -->
+      <g transform="translate(475, 575)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="41 37 31 33 27 35 27 33 22 35 19 33 10 44 9 40 5 38 1 43 0 35 2 27 1 23 3 20 1 16 4 14 6 4 14 2 11 8 23 15 31 11 33 3 43 0 47 3 50 14 49 25 46 26 47 29"/>
+      </g>
+
+      <!-- 兵庫県 -->
+      <g transform="translate(345, 655)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <path d="M31,90 L23,93 L23,88 L20,89 L20,86 L38,67 L39,69 L32,79 L35,88 L31,90 Z M3,59 L4,56 L0,50 L2,47 L1,40 L9,32 L8,26 L14,24 L14,20 L7,3 L16,0 L33,1 L32,5 L36,10 L41,9 L42,11 L42,17 L36,17 L35,23 L42,28 L47,26 L49,33 L59,35 L58,40 L55,41 L56,45 L62,48 L60,49 L62,60 L59,62 L53,60 L40,66 L25,56 L11,57 L11,53 L8,58 L5,56 L3,59 Z"/>
+      </g>
+
+      <!-- 奈良県 -->
+      <g transform="translate(410, 712)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="24 48 19 51 19 54 17 54 17 57 16 57 3 55 5 49 0 42 6 35 10 34 6 25 8 20 6 11 11 0 17 5 21 2 25 5 27 3 29 7 26 8 28 9 27 13 36 18 28 24 31 29 29 30 31 33 29 37 30 44 29 47"/>
+      </g>
+
+      <!-- 和歌山県 -->
+      <g transform="translate(385, 737)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <path d="M41,32 L44,38 L49,41 L45,46 L46,50 L38,55 L37,59 L35,59 L36,56 L19,51 L14,44 L17,41 L9,37 L4,30 L0,30 L3,25 L0,24 L6,21 L1,18 L5,16 L4,14 L8,14 L0,6 L2,3 L5,6 L31,0 L35,9 L31,10 L25,17 L30,24 L28,30 L41,32 Z M49,23 L49,26 L44,29 L44,26 L49,23 Z"/>
+      </g>
+
+      <!-- 鳥取県 -->
+      <g transform="translate(288, 658)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="7 33 0 31 4 25 2 22 10 20 11 11 5 3 7 2 9 6 15 8 23 4 34 6 55 5 64 0 71 17 71 21 65 23 53 27 52 21 45 18 46 16 36 22 32 17 25 15 22 21 20 22 21 25 14 25 15 29 8 30"/>
+      </g>
+
+      <!-- 岡山県 -->
+      <g transform="translate(295, 673)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="58 8 59 14 51 22 52 29 50 32 54 38 53 41 46 39 49 42 43 49 34 48 39 49 36 53 34 52 33 57 27 55 25 58 23 52 23 55 19 51 15 55 10 52 12 56 8 54 4 38 5 33 1 28 3 21 0 18 1 15 8 14 7 10 14 10 13 7 15 6 18 0 25 2 29 7 39 1 38 3 45 6 46 12"/>
+      </g>
+
+      <!-- 福井県 -->
+      <g transform="translate(408, 618)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="40 0 46 8 56 9 61 14 66 13 64 19 70 27 67 31 54 32 53 34 47 31 42 40 35 37 36 45 33 44 33 47 27 50 24 48 21 55 18 54 15 58 3 56 0 51 1 45 3 49 10 46 6 49 13 50 15 47 13 48 13 45 19 47 17 45 20 43 18 40 26 41 25 35 28 33 29 38 31 39 32 32 25 19 34 6 34 2"/>
+      </g>
+
+      <!-- 埼玉県 -->
+      <g transform="translate(573, 618)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="48 4 49 5 51 12 54 11 54 11 60 24 60 31 54 29 52 31 48 30 42 33 42 29 35 32 30 28 15 24 12 27 1 24 0 19 16 10 21 0 32 2 38 6"/>
+      </g>
+
+      <!-- 東京都 -->
+      <g transform="translate(585, 642)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <path d="M48,7 L49,12 L47,16 L41,15 L43,19 L39,20 L43,20 L43,23 L29,16 L26,18 L29,20 L27,20 L27,25 L23,20 L9,14 L4,11 L0,3 L3,0 L18,4 L23,8 L30,5 L30,9 L36,6 L40,7 L42,5 L48,7 Z"/>
+      </g>
+
+      <!-- 栃木県 -->
+      <g transform="translate(603, 563)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="19 60 18 59 16 55 7 56 2 49 8 36 0 33 1 24 4 21 1 19 3 16 28 0 40 3 46 7 47 13 47 24 48 27 45 29 47 39 44 46 33 48 30 53 27 53 26 57"/>
+      </g>
+
+      <!-- 福島県 -->
+      <g transform="translate(594, 511)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="82 69 72 64 72 68 66 74 56 65 55 59 49 55 37 52 12 68 4 66 5 52 0 47 4 41 2 37 3 34 12 33 13 30 21 30 19 21 28 11 25 9 32 11 38 10 40 14 44 13 47 15 53 14 56 10 54 9 55 0 61 0 65 4 74 4 75 10 80 12 79 10 83 10 83 4 87 4 93 18 93 45 91 61"/>
+      </g>
+
+      <!-- 茨城県 -->
+      <g transform="translate(622, 575)" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+        <polygon points="5 54 5 54 2 55 0 48 7 45 8 41 11 41 14 36 25 34 28 27 26 17 29 15 28 12 28 1 38 10 44 4 44 0 54 5 46 29 47 35 44 42 46 52 51 61 49 63 51 66 52 62 60 74 42 62 42 65 24 69 13 64"/>
+      </g>
+
+      <!-- =============================== -->
+      <!-- 対応エリア（金色）               -->
+      <!-- =============================== -->
+
+      <!-- 長野県 -->
+      <g transform="translate(503, 572)" fill="#B8963E" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" filter="url(#shadow)">
+        <polygon points="68 18 59 21 60 23 55 27 54 34 57 39 66 39 67 45 64 47 66 53 63 54 66 57 66 63 70 65 71 70 68 72 64 69 58 71 53 66 43 77 46 80 43 82 45 87 41 92 41 104 26 114 18 112 13 115 12 109 14 106 12 102 15 102 13 99 15 95 9 89 11 86 6 79 0 76 2 71 7 71 13 64 14 60 11 56 16 46 13 40 19 32 18 29 21 28 22 17 27 10 27 7 34 8 34 13 36 14 44 10 48 12 48 7 53 2 60 0 63 2 63 7 68 11"/>
+      </g>
+
+      <!-- 岐阜県 -->
+      <g transform="translate(450, 608)" fill="#B8963E" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" filter="url(#shadow)">
+        <polygon points="66 4 69 10 64 20 67 24 66 28 60 35 55 35 53 40 59 43 64 50 62 53 68 59 66 63 68 66 65 66 67 70 65 73 58 77 52 73 45 75 40 73 34 65 24 68 20 76 19 82 12 75 6 77 4 76 8 66 7 63 4 56 1 56 0 50 5 41 11 44 12 42 25 41 28 37 22 29 24 23 29 13 26 10 30 5 34 7 35 11 44 0 47 2 52 0 52 2 56 0"/>
+      </g>
+
+      <!-- 静岡県 -->
+      <g transform="translate(511, 659)" fill="#B8963E" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" filter="url(#shadow)">
+        <polygon points="73 14 77 14 77 27 83 31 81 36 85 42 85 46 78 55 77 61 70 65 64 59 67 45 65 41 66 38 72 37 62 31 55 33 51 38 53 41 44 45 42 54 36 61 38 65 25 61 0 60 0 52 8 47 18 27 33 17 33 5 37 0 40 8 39 19 44 20 48 29 53 27 52 20 56 12 61 17"/>
+      </g>
+
+      <!-- 滋賀県 -->
+      <g transform="translate(423, 655)" fill="#B8963E" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" filter="url(#shadow)">
+        <path d="M20,0 L27,3 L28,9 L31,9 L34,16 L35,19 L31,29 L33,30 L34,40 L30,50 L24,53 L17,50 L16,55 L13,56 L9,50 L5,50 L2,40 L5,26 L0,21 L3,17 L6,18 L9,11 L12,13 L18,10 L18,7 L21,8 L20,0 Z"/>
+        <!-- 琵琶湖 -->
+        <path d="M20,13 L20,16 L18,13 L14,16 L16,24 L8,32 L8,36 L5,42 L7,45 L9,36 L15,35 L16,31 L25,25 L26,21 L20,13 Z" fill="#B8D4E3" stroke="none"/>
+      </g>
+
+      <!-- 京都府 -->
+      <g transform="translate(377, 649)" fill="#B8963E" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" filter="url(#shadow)">
+        <polygon points="44 63 41 55 37 54 38 51 34 54 26 46 27 41 17 39 15 32 10 34 3 29 4 23 10 23 10 17 9 15 4 16 0 11 1 7 3 10 2 8 19 0 23 7 15 14 18 15 20 11 20 15 24 17 23 21 25 18 27 19 25 14 31 11 32 14 31 20 34 25 46 27 51 32 48 46 51 56 55 56 59 62 60 66 58 68 54 65 50 68"/>
+      </g>
+
+      <!-- 大阪府 -->
+      <g transform="translate(387, 695)" fill="#B8963E" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" filter="url(#shadow)">
+        <polygon points="16 0 24 8 28 5 27 8 31 9 34 17 29 28 31 37 29 42 3 48 0 45 7 44 14 37 17 28 19 30 17 22 20 20 18 9 20 8 14 5 13 1"/>
+      </g>
+
+      <!-- 三重県 -->
+      <g transform="translate(426, 683)" fill="#B8963E" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" filter="url(#shadow)">
+        <polygon points="8 95 3 92 0 86 1 86 1 83 3 83 8 80 8 77 13 76 14 73 13 66 15 62 13 59 15 58 12 53 20 47 11 42 12 38 10 37 13 36 11 32 10 28 13 27 14 22 21 25 27 22 31 12 30 2 36 0 43 7 48 15 42 16 43 20 36 32 35 40 51 47 53 52 56 51 55 55 50 55 55 56 55 61 51 62 53 60 50 58 49 60 43 61 46 57 42 57 39 62 39 60 36 63 34 61 34 64 32 62 25 66 22 68 23 73 21 72 22 70 18 73 22 77 20 77 22 80 19 78 20 81 13 85"/>
+      </g>
+
+      <!-- 愛知県（拠点 - 濃い金色） -->
+      <g transform="translate(469, 673)" fill="#9A7B2F" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" filter="url(#shadow)">
+        <polygon points="42 46 18 52 20 47 23 49 31 43 33 46 35 43 34 40 28 37 26 41 18 40 14 37 16 29 12 40 16 45 13 45 9 41 10 36 8 33 8 28 12 21 5 25 0 17 1 11 5 3 15 0 21 8 26 10 33 8 39 12 46 8 47 14 52 11 60 13 50 33 42 38"/>
+      </g>
+
+      <!-- =============================== -->
+      <!-- 県名ラベル                       -->
+      <!-- =============================== -->
+
+      <!-- 対応エリア外ラベル（グレー）- 県の中央付近に配置 -->
+      <g font-family="'Noto Sans JP', sans-serif" font-size="9" fill="#AAAAAA" text-anchor="middle">
+        <text x="570" y="530">新潟</text>
+        <text x="585" y="598">群馬</text>
+        <text x="566" y="662">山梨</text>
+        <text x="608" y="680">神奈川</text>
+        <text x="465" y="580">石川</text>
+        <text x="502" y="598">富山</text>
+        <text x="372" y="695">兵庫</text>
+        <text x="428" y="748">奈良</text>
+        <text x="408" y="775">和歌山</text>
+        <text x="318" y="678">鳥取</text>
+        <text x="325" y="706">岡山</text>
+        <text x="438" y="645">福井</text>
+        <text x="603" y="636">埼玉</text>
+        <text x="612" y="656">東京</text>
+        <text x="630" y="596">栃木</text>
+        <text x="645" y="552">福島</text>
+        <text x="656" y="618">茨城</text>
+      </g>
+
+      <!-- 対応エリアラベル（白文字・太字）- 各県の中央に配置 -->
+      <g font-family="'Noto Sans JP', sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle" font-weight="bold">
+        <text x="535" y="638" style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">長野</text>
+        <text x="483" y="648" style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">岐阜</text>
+        <text x="553" y="698" style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">静岡</text>
+        <text x="443" y="690" font-size="9" style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">滋賀</text>
+        <text x="400" y="685" style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">京都</text>
+        <text x="404" y="722" font-size="9" style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">大阪</text>
+        <text x="456" y="735" font-size="9" style="text-shadow:0 1px 2px rgba(0,0,0,0.3)">三重</text>
+      </g>
+
+      <!-- 愛知県ラベル -->
+      <g font-family="'Noto Sans JP', sans-serif" text-anchor="middle">
+        <text x="500" y="700" font-size="13" fill="#FFFFFF" font-weight="bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.4)">愛知</text>
+      </g>
+
+      <!-- 拠点マーク: 愛知県内に赤い丸、海側にラベル、赤矢印で結ぶ -->
+      <g>
+        <!-- 愛知県内の拠点ポイント -->
+        <circle cx="495" cy="695" r="4" fill="#CC3333" stroke="#FFFFFF" stroke-width="1.5"/>
+        <!-- 赤い矢印ライン（海側のラベルから拠点ポイントへ） -->
+        <line x1="520" y1="735" x2="498" y2="700" stroke="#CC3333" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <!-- 海側の拠点ラベル -->
+        <text x="530" y="745" font-family="'Noto Sans JP', sans-serif" font-size="10" fill="#CC3333" font-weight="bold" text-anchor="middle">拠点</text>
+      </g>
+
+    </g>
+  </g>
+
+  <!-- 矢印マーカー定義 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" fill="#CC3333">
+      <polygon points="0 0, 8 3, 0 6"/>
+    </marker>
+  </defs>
+
+  <!-- 凡例（右下、注釈と重ならない位置） -->
+  <g transform="translate(560, 745)" font-family="'Noto Sans JP', sans-serif" font-size="8">
+    <text x="0" y="0" font-size="9" fill="#3C2415" font-weight="bold">凡例</text>
+    <rect x="0" y="5" width="12" height="8" rx="1.5" fill="#9A7B2F" stroke="#FFFFFF" stroke-width="0.5"/>
+    <text x="16" y="13" fill="#3C2415">拠点（愛知県）</text>
+    <rect x="0" y="17" width="12" height="8" rx="1.5" fill="#B8963E" stroke="#FFFFFF" stroke-width="0.5"/>
+    <text x="16" y="25" fill="#3C2415">対応エリア</text>
+    <rect x="0" y="29" width="12" height="8" rx="1.5" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="0.5"/>
+    <text x="16" y="37" fill="#3C2415">対応エリア外</text>
+  </g>
+
+  <!-- 注釈（最下部、凡例と離す） -->
+  <text x="450" y="845" font-family="'Noto Sans JP', sans-serif" font-size="7" fill="#AAAAAA" text-anchor="middle">
+    ※ 一部地域は出張費が別途かかる場合があります ／ 地図データ: Geolonia
+  </text>
+
+</svg>

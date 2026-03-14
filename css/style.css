@@ -1,0 +1,1406 @@
+/* ============================================
+   仏壇修復サービス - プレミアムスタイル
+   「金閣寺の金箔の美しさ」x「Appleのミニマルデザイン」
+   Tailwind CSS 併用前提
+   ============================================ */
+
+/* ============================================
+   1. CSS変数（カラーパレット・デザイントークン）
+   すべての色をここで一元管理
+   ============================================ */
+:root {
+  /* --- ゴールド系（金箔の階調） --- */
+  --gold-light: #f6e27a;
+  --gold-main: #B8963E;
+  --gold-dark: #9A7B2F;
+  --gold-darker: #7A6025;
+
+  /* --- ベース色 --- */
+  --ivory: #FAF6F0;
+  --walnut: #3C2415;
+  --washi: #F5EDE3;
+  --matcha: #2D6A4F;
+  --white: #FFFFFF;
+
+  /* --- 金箔グラデーション（7色停止で金属的な光沢を再現） --- */
+  --gold-foil-gradient: linear-gradient(
+    135deg,
+    #462523 0%,
+    #cb9b51 22%,
+    #f6e27a 40%,
+    #f6f2c0 50%,
+    #f6e27a 60%,
+    #cb9b51 78%,
+    #462523 100%
+  );
+
+  /* --- ゴールドボーダー用グラデーション --- */
+  --gold-border-gradient: linear-gradient(
+    135deg,
+    var(--gold-darker),
+    var(--gold-light),
+    var(--gold-main),
+    var(--gold-light),
+    var(--gold-darker)
+  );
+
+  /* --- シャドウ --- */
+  --shadow-soft: 0 4px 16px rgba(60, 36, 21, 0.08);
+  --shadow-medium: 0 8px 30px rgba(60, 36, 21, 0.12);
+  --shadow-gold-glow: 0 8px 32px rgba(184, 150, 62, 0.25);
+  --shadow-gold-intense: 0 12px 40px rgba(184, 150, 62, 0.35);
+
+  /* --- トランジション（Apple風の滑らかなイージング） --- */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.3s;
+  --duration-medium: 0.5s;
+  --duration-slow: 0.8s;
+  --duration-reveal: 1s;
+}
+
+
+/* ============================================
+   2. スムーズスクロール & 基本設定
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* ============================================
+   3. 和紙テクスチャ背景（リファイン版）
+   Apple的なクリーンさを保ちつつ、和紙の繊維感を超微妙に表現
+   ============================================ */
+body {
+  background-color: var(--ivory);
+  background-image:
+    /* 縦方向の和紙繊維（極薄い金色） */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(184, 150, 62, 0.012) 2px,
+      rgba(184, 150, 62, 0.012) 4px
+    ),
+    /* 横方向の和紙繊維（極薄いウォールナット） */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(60, 36, 21, 0.008) 3px,
+      rgba(60, 36, 21, 0.008) 6px
+    ),
+    /* 左側の暖色光源 */
+    radial-gradient(
+      ellipse at 20% 50%,
+      rgba(245, 237, 227, 0.5) 0%,
+      transparent 70%
+    ),
+    /* 右側の暖色光源 */
+    radial-gradient(
+      ellipse at 80% 50%,
+      rgba(245, 237, 227, 0.3) 0%,
+      transparent 70%
+    );
+  color: var(--walnut);
+}
+
+/* メニュー展開時のスクロールロック */
+body.menu-open {
+  overflow: hidden;
+}
+
+
+/* ============================================
+   4. カスタムスクロールバー（ゴールド仕様）
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--washi);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--gold-main),
+    var(--gold-dark)
+  );
+  border-radius: 4px;
+  border: 1px solid rgba(246, 226, 122, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--gold-light),
+    var(--gold-main)
+  );
+}
+
+/* Firefox向けスクロールバー */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-main) var(--washi);
+}
+
+
+/* ============================================
+   5. 金箔テキストエフェクト
+   background-clip: text で金属的なグラデーションを実現
+   ============================================ */
+
+/* 金箔テキスト（静的） */
+.gold-text {
+  background: var(--gold-foil-gradient);
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 金箔テキスト + シマー（キラッと光る）アニメーション */
+.gold-shimmer {
+  background: linear-gradient(
+    135deg,
+    #462523 0%,
+    #cb9b51 15%,
+    #f6e27a 30%,
+    #f6f2c0 40%,
+    #f6e27a 50%,
+    #cb9b51 65%,
+    #462523 80%,
+    #cb9b51 90%,
+    #f6e27a 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gold-shimmer 6s ease-in-out infinite;
+  will-change: background-position;
+}
+
+/* シンプルな金グラデーションテキスト（既存クラスの上位互換） */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-main), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ============================================
+   6. ゴールドボーダーアニメーションカード
+   ホバー時にゴールドのグラデーションボーダーが光る
+   ============================================ */
+.gold-border-card {
+  position: relative;
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-premium),
+              box-shadow var(--duration-medium) var(--ease-premium);
+}
+
+/* ゴールドのグラデーションボーダー（疑似要素で実現） */
+.gold-border-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 16px;
+  background: var(--gold-border-gradient);
+  background-size: 300% 300%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.4;
+  transition: opacity var(--duration-medium) var(--ease-smooth),
+              background-size var(--duration-medium) var(--ease-smooth);
+  pointer-events: none;
+}
+
+.gold-border-card:hover::before {
+  opacity: 1;
+  animation: border-glow 3s ease infinite;
+}
+
+.gold-border-card:hover {
+  box-shadow: var(--shadow-gold-glow);
+}
+
+
+/* ============================================
+   7. スクロールアニメーション（強化版）
+   画面内に入った要素をプレミアムな動きで表示
+   ============================================ */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--duration-reveal) var(--ease-premium),
+              transform var(--duration-reveal) var(--ease-premium);
+  will-change: opacity, transform;
+}
+
+[data-animate].animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* スタッガー遅延（子要素が順番にフェードイン） */
+[data-animate]:nth-child(2) { transition-delay: 0.15s; }
+[data-animate]:nth-child(3) { transition-delay: 0.3s; }
+[data-animate]:nth-child(4) { transition-delay: 0.45s; }
+[data-animate]:nth-child(5) { transition-delay: 0.6s; }
+[data-animate]:nth-child(6) { transition-delay: 0.75s; }
+
+
+/* ============================================
+   8. ガラスモルフィズム + ゴールドティント
+   半透明の美しいカード表現
+   ============================================ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(184, 150, 62, 0.15);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow var(--duration-medium) var(--ease-premium),
+              border-color var(--duration-medium) var(--ease-premium);
+}
+
+.glass-card:hover {
+  box-shadow: var(--shadow-gold-glow);
+  border-color: rgba(184, 150, 62, 0.35);
+}
+
+/* ダーク版ガラスモルフィズム（ヒーローなど暗い背景で使用） */
+.glass-card-dark {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(184, 150, 62, 0.2);
+  border-radius: 20px;
+}
+
+
+/* ============================================
+   9. セクションタイトル装飾
+   下にフェードする金グラデーションライン + ダイヤモンド装飾
+   ============================================ */
+.section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 20px;
+}
+
+/* 装飾ライン（左右にフェードする金グラデーション） */
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold-main) 30%,
+    var(--gold-light) 50%,
+    var(--gold-main) 70%,
+    transparent 100%
+  );
+  border-radius: 2px;
+}
+
+/* ラインの中央にダイヤモンド装飾 */
+.section-title::before {
+  content: '\25C7';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: var(--gold-main);
+  background: var(--ivory);
+  padding: 0 8px;
+  z-index: 1;
+  letter-spacing: 0;
+}
+
+/* 和紙背景のセクションではダイヤモンド背景色を合わせる */
+.bg-washi .section-title::before {
+  background: var(--washi);
+}
+
+/* 左寄せ見出し用 */
+.section-title-left::after {
+  left: 0;
+  transform: none;
+}
+
+.section-title-left::before {
+  left: 40px;
+  transform: none;
+}
+
+
+/* ============================================
+   10. サービスカード（超プレミアム版）
+   ホバーでリフトアップ + ゴールドグロー + コーナー装飾
+   ============================================ */
+.service-card {
+  position: relative;
+  border-radius: 16px;
+  transition: transform var(--duration-medium) var(--ease-premium),
+              box-shadow var(--duration-medium) var(--ease-premium);
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* 上辺のゴールド装飾ライン */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold-dark) 15%,
+    var(--gold-light) 35%,
+    var(--gold-main) 50%,
+    var(--gold-light) 65%,
+    var(--gold-dark) 85%,
+    transparent 100%
+  );
+  opacity: 0.6;
+  transition: opacity var(--duration-medium) var(--ease-smooth);
+}
+
+/* 左上のゴールドコーナー装飾 */
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--gold-main);
+  border-left: 2px solid var(--gold-main);
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-smooth),
+              width var(--duration-medium) var(--ease-premium),
+              height var(--duration-medium) var(--ease-premium);
+  pointer-events: none;
+  border-top-left-radius: 16px;
+}
+
+/* ホバー時: リフトアップ + ゴールドグロー */
+.service-card:hover {
+  transform: translateY(-12px);
+  box-shadow:
+    0 20px 50px rgba(60, 36, 21, 0.1),
+    0 8px 24px rgba(184, 150, 62, 0.15);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card:hover::after {
+  opacity: 0.5;
+  width: 30px;
+  height: 30px;
+}
+
+
+/* ============================================
+   11. CTAボタン（高級感）
+   ============================================ */
+
+/* matchaカラーのプライマリCTA */
+.cta-primary,
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--matcha);
+  color: var(--white);
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-premium),
+              box-shadow var(--duration-medium) var(--ease-premium),
+              background var(--duration-fast) var(--ease-smooth);
+  text-decoration: none;
+}
+
+.cta-primary:hover,
+.cta-button:hover {
+  transform: scale(1.02) translateY(-2px);
+  background: #245a42;
+  box-shadow:
+    0 8px 24px rgba(45, 106, 79, 0.3),
+    0 0 0 1px rgba(45, 106, 79, 0.1);
+}
+
+.cta-primary:active,
+.cta-button:active {
+  transform: scale(0.98) translateY(0);
+}
+
+/* 金グラデーションボーダーのCTA */
+.cta-gold,
+.cta-button-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--gold-main);
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  border: 2px solid transparent;
+  background-image: linear-gradient(var(--white), var(--white)),
+                    var(--gold-border-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: all var(--duration-fast) var(--ease-premium);
+}
+
+.cta-gold:hover,
+.cta-button-gold:hover {
+  background-image: linear-gradient(
+    135deg,
+    rgba(184, 150, 62, 0.08),
+    rgba(246, 226, 122, 0.12),
+    rgba(184, 150, 62, 0.08)
+  ), var(--gold-border-gradient);
+  box-shadow: var(--shadow-gold-glow);
+  transform: scale(1.02) translateY(-2px);
+  color: var(--gold-dark);
+}
+
+/* 脈動するグローエフェクト付きCTA */
+.cta-pulse {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+
+/* ============================================
+   12. ヒーローセクション
+   ダークグラデーション + 金色の浮遊光源
+   ============================================ */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 暗めのグラデーションオーバーレイ */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(60, 36, 21, 0.5) 0%,
+    rgba(60, 36, 21, 0.6) 40%,
+    rgba(60, 36, 21, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+/* 金色の浮遊光源（radial-gradient） */
+.hero-overlay::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(184, 150, 62, 0.08) 0%,
+    transparent 60%
+  );
+  animation: float 8s ease-in-out infinite;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* 2つ目の浮遊光源 */
+.hero-overlay::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  right: 20%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(246, 226, 122, 0.06) 0%,
+    transparent 60%
+  );
+  animation: float 10s ease-in-out infinite reverse;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* ヒーローテキストの奥行き感 */
+.hero-text {
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(184, 150, 62, 0.1);
+}
+
+/* 信頼バッジ（職人対応・出張対応など） */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: rgba(184, 150, 62, 0.1);
+  border: 1px solid rgba(184, 150, 62, 0.3);
+  border-radius: 999px;
+  color: var(--gold-light);
+  font-size: 0.85rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.trust-badge:hover {
+  background: rgba(184, 150, 62, 0.18);
+  border-color: rgba(184, 150, 62, 0.5);
+  box-shadow: 0 0 20px rgba(184, 150, 62, 0.1);
+}
+
+
+/* ============================================
+   13. ヘッダー
+   スクロール前: 完全透過 / スクロール後: ガラスモルフィズム
+   ============================================ */
+#header {
+  transition: all 0.4s var(--ease-premium);
+  border-bottom: 1px solid transparent;
+}
+
+/* スクロール後の状態 */
+#header.scrolled {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 2px 16px rgba(60, 36, 21, 0.08);
+  border-bottom: 1px solid rgba(184, 150, 62, 0.15);
+}
+
+/* スクロール後のリンク色変更 */
+#header.scrolled .header-link {
+  color: var(--walnut) !important;
+  text-shadow: none !important;
+}
+
+#header.scrolled .header-link:hover {
+  color: var(--gold-main) !important;
+}
+
+/* スクロール後のハンバーガーメニュー色変更 */
+#header.scrolled .hamburger-line {
+  background-color: var(--walnut) !important;
+  filter: none !important;
+}
+
+
+/* ============================================
+   14. ハンバーガーメニューアニメーション
+   3本線がバツ印に変形
+   ============================================ */
+.hamburger-line {
+  transition: all var(--duration-fast) var(--ease-premium);
+  transform-origin: center;
+}
+
+/* メニュー展開時: 1本目を45度回転 */
+.menu-open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+/* メニュー展開時: 2本目を非表示 */
+.menu-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+/* メニュー展開時: 3本目を-45度回転 */
+.menu-open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+
+/* ============================================
+   15. モバイルメニュー
+   右からスライドインするナビゲーション
+   ============================================ */
+.mobile-menu {
+  transform: translateX(100%);
+  transition: transform var(--duration-fast) var(--ease-premium);
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* メニュー背後の半透明オーバーレイ */
+.mobile-menu-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+              visibility var(--duration-fast) var(--ease-smooth);
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ============================================
+   16. セクション区切り装飾
+   ゴールドのグラデーションラインがスライドアニメーション
+   ============================================ */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold-dark) 20%,
+    var(--gold-light) 40%,
+    var(--gold-main) 50%,
+    var(--gold-light) 60%,
+    var(--gold-dark) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: gradient-shift 4s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+/* 和風の区切り線（菱形パターン） */
+.divider-japanese {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--gold-main);
+  opacity: 0.5;
+}
+
+.divider-japanese::before,
+.divider-japanese::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-main),
+    transparent
+  );
+}
+
+
+/* ============================================
+   17. お客様の声カード
+   大きな引用符 + ゴールドのアクセントライン
+   ============================================ */
+.testimonial-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景に大きな開き引用符（「） */
+.testimonial-card::before {
+  content: '\300C';
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 6rem;
+  color: var(--gold-main);
+  opacity: 0.06;
+  font-family: serif;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* 閉じ引用符（」） */
+.testimonial-card::after {
+  content: '\300D';
+  position: absolute;
+  bottom: -20px;
+  right: 10px;
+  font-size: 6rem;
+  color: var(--gold-main);
+  opacity: 0.06;
+  font-family: serif;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* 星評価の色 */
+.star-rating,
+.star-gold {
+  color: var(--gold-main);
+}
+
+/* お客様の声カードのホバー */
+.testimonial-card {
+  transition: transform var(--duration-fast) var(--ease-premium),
+              box-shadow var(--duration-medium) var(--ease-premium);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+
+/* ============================================
+   18. Before/After スライダー
+   修復前後の比較UI
+   ============================================ */
+.before-after-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  aspect-ratio: 4 / 3;
+  box-shadow: var(--shadow-medium);
+}
+
+.before-image,
+.after-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.after-image {
+  clip-path: inset(0 50% 0 0);
+}
+
+/* スライダーの縦線 */
+.slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    var(--gold-light),
+    var(--gold-main),
+    var(--gold-light)
+  );
+  cursor: ew-resize;
+  left: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(184, 150, 62, 0.4);
+}
+
+/* 丸いドラッグハンドル */
+.slider-handle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-main));
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(184, 150, 62, 0.3);
+}
+
+/* ハンドル上の矢印アイコン */
+.slider-handle::after {
+  content: '\25C4  \25BA';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--white);
+  font-size: 11px;
+  white-space: nowrap;
+  letter-spacing: 2px;
+  z-index: 1;
+}
+
+/* スライダーのラベル */
+.before-after-container .slider-label {
+  position: absolute;
+  bottom: 12px;
+  padding: 4px 14px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  font-size: 0.75rem;
+  border-radius: 20px;
+  z-index: 5;
+  pointer-events: none;
+  border: 1px solid rgba(184, 150, 62, 0.2);
+}
+
+.before-after-container .slider-label.label-before {
+  left: 12px;
+}
+
+.before-after-container .slider-label.label-after {
+  right: 12px;
+}
+
+
+/* ============================================
+   19. フッター
+   ダークウォールナット + ゴールドアクセント
+   ============================================ */
+.site-footer {
+  background-color: var(--walnut);
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+/* 上部のゴールドグラデーションライン */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold-dark) 20%,
+    var(--gold-light) 40%,
+    var(--gold-main) 50%,
+    var(--gold-light) 60%,
+    var(--gold-dark) 80%,
+    transparent 100%
+  );
+}
+
+.site-footer a {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color var(--duration-fast) var(--ease-smooth);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--gold-light);
+}
+
+/* フッターの区切り線 */
+.footer-divider {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* フッターロゴ/ブランド名 */
+.footer-brand {
+  color: var(--gold-main);
+}
+
+
+/* ============================================
+   20. フォーム関連
+   フォーカス時のゴールドボーダー + グロー
+   ============================================ */
+.form-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+select,
+textarea {
+  transition: border-color var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+/* フォーカス時: ゴールドボーダー + ゴールドグロー */
+.form-input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--gold-main);
+  box-shadow:
+    0 0 0 3px rgba(184, 150, 62, 0.12),
+    0 0 16px rgba(184, 150, 62, 0.08);
+  outline: none;
+}
+
+/* ファイルアップロードのドラッグ&ドロップエリア */
+.upload-area {
+  border: 2px dashed rgba(184, 150, 62, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-smooth),
+              background-color var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
+  background: rgba(245, 237, 227, 0.3);
+}
+
+/* ドラッグ中またはホバー中 */
+.upload-area:hover,
+.upload-area.dragover {
+  border-color: var(--gold-main);
+  background: rgba(184, 150, 62, 0.04);
+  box-shadow: 0 0 20px rgba(184, 150, 62, 0.08);
+}
+
+.upload-area.dragover {
+  border-style: solid;
+}
+
+/* アップロードアイコン */
+.upload-area .upload-icon {
+  font-size: 2.5rem;
+  color: var(--gold-main);
+  margin-bottom: 0.5rem;
+}
+
+/* プレビュー画像 */
+.preview-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--washi);
+  transition: border-color var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+.preview-image:hover {
+  border-color: var(--gold-main);
+  box-shadow: 0 0 12px rgba(184, 150, 62, 0.15);
+}
+
+/* プレビュー画像の削除ボタン */
+.preview-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  background: #dc2626;
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--duration-fast) var(--ease-premium);
+}
+
+.preview-remove:hover {
+  transform: scale(1.15);
+}
+
+
+/* ============================================
+   21. 対応エリア地図
+   ============================================ */
+#area-map {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+#area-map svg {
+  width: 100%;
+  height: auto;
+}
+
+#area-map .area-active {
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+              filter var(--duration-fast) var(--ease-smooth);
+  cursor: pointer;
+}
+
+#area-map .area-active:hover {
+  opacity: 0.8;
+  filter: brightness(1.1) drop-shadow(0 0 8px rgba(184, 150, 62, 0.3));
+}
+
+
+/* ============================================
+   22. ユーティリティクラス
+   ============================================ */
+
+/* 金色アンダーライン */
+.gold-underline {
+  position: relative;
+  display: inline;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--gold-main),
+    var(--gold-light),
+    var(--gold-main)
+  );
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-medium) var(--ease-premium);
+}
+
+.gold-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* カード共通の影 */
+.card-shadow {
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow var(--duration-medium) var(--ease-premium);
+}
+
+.card-shadow:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+/* 磁気効果（マウス追従、JS側で座標制御） */
+.magnetic-element {
+  transition: transform var(--duration-fast) var(--ease-premium);
+}
+
+.magnetic-element:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+
+/* ============================================
+   23. キーフレームアニメーション
+   ============================================ */
+
+/* 金箔がキラッと光るシマー */
+@keyframes gold-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ゆっくり浮遊する動き */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-15px) translateX(8px);
+  }
+  50% {
+    transform: translateY(-8px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(3px);
+  }
+}
+
+/* 脈動するグロー（CTAボタン用） */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 20px 8px rgba(45, 106, 79, 0.08),
+      0 0 40px 16px rgba(45, 106, 79, 0.04);
+  }
+}
+
+/* ゴールド脈動グロー */
+@keyframes pulse-glow-gold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(184, 150, 62, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 20px 8px rgba(184, 150, 62, 0.1),
+      0 0 40px 16px rgba(184, 150, 62, 0.05);
+  }
+}
+
+/* ボーダーが光るアニメーション */
+@keyframes border-glow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* グラデーション位置がスライドする */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* フェードイン + 上昇 */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ラインが中央から左右に伸びる */
+@keyframes reveal-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+
+/* ============================================
+   24. レスポンシブ対応
+   ============================================ */
+
+/* --- モバイル（〜767px） --- */
+@media (max-width: 767px) {
+  /* ヒーローセクション */
+  .hero-section {
+    min-height: 80vh;
+  }
+
+  .hero-text {
+    font-size: 1.75rem;
+  }
+
+  /* セクション見出し */
+  .section-title {
+    font-size: 1.5rem;
+    padding-bottom: 16px;
+  }
+
+  .section-title::after {
+    width: 50px;
+  }
+
+  /* サービスカード: タッチデバイスではホバー効果を抑制 */
+  .service-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .service-card:hover::after {
+    opacity: 0;
+  }
+
+  /* Before/Afterスライダー */
+  .before-after-container {
+    aspect-ratio: 3 / 4;
+  }
+
+  .slider-handle::before {
+    width: 36px;
+    height: 36px;
+  }
+
+  .slider-handle::after {
+    font-size: 9px;
+  }
+
+  /* CTAボタン: モバイルでは幅いっぱい */
+  .cta-button,
+  .cta-primary {
+    width: 100%;
+    padding: 16px 24px;
+  }
+
+  /* お客様の声の引用符を縮小 */
+  .testimonial-card::before,
+  .testimonial-card::after {
+    font-size: 4rem;
+  }
+
+  /* フォーム */
+  .upload-area {
+    padding: 1.5rem;
+  }
+
+  .preview-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* 信頼バッジ */
+  .trust-badge {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+  }
+}
+
+/* --- タブレット（768px〜1023px） --- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-section {
+    min-height: 70vh;
+  }
+
+  .hero-text {
+    font-size: 2.25rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .before-after-container {
+    aspect-ratio: 16 / 10;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 16px 40px rgba(60, 36, 21, 0.1),
+      0 4px 16px rgba(184, 150, 62, 0.1);
+  }
+}
+
+/* --- PC（1024px〜） --- */
+@media (min-width: 1024px) {
+  .hero-section {
+    min-height: 90vh;
+  }
+
+  .hero-text {
+    font-size: 3rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .before-after-container {
+    aspect-ratio: 16 / 9;
+  }
+
+  .form-input,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+}
+
+
+/* ============================================
+   25. アクセシビリティ
+   動きを減らす設定のユーザーへの配慮
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* すべてのアニメーション・トランジションを無効化 */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* スクロールアニメーションは即座に表示 */
+  [data-animate] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* スムーズスクロールも無効化 */
+  html {
+    scroll-behavior: auto;
+  }
+
+  .gold-shimmer {
+    animation: none;
+    background-size: 100% 100%;
+  }
+
+  .service-card {
+    transition: none;
+  }
+
+  .mobile-menu {
+    transition: none;
+  }
+
+  .hamburger-line {
+    transition: none;
+  }
+}

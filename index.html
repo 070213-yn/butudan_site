@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仏壇クリーニング・修復専門 | お仏壇修復</title>
+  <meta name="description" content="愛知県を拠点に仏壇クリーニング・修復を行う専門サービス。出張費格安で職人が丁寧に仕上げます。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwindカスタム設定
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FAF6F0',
+            walnut: '#3C2415',
+            gold: '#B8963E',
+            washi: '#F5EDE3',
+            matcha: '#2D6A4F',
+          },
+          fontFamily: {
+            serif: ['"Noto Serif JP"', 'serif'],
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- カスタムCSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- プレミアムスタイル（金閣寺 x Apple ミニマル） -->
+  <style>
+    /* スムーズスクロール */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* 基本フォント設定 */
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #3C2415;
+      background-color: #FAF6F0;
+    }
+
+    /* スクロールアニメーション初期状態 */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    [data-animate].animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ヘッダートランジション */
+    #header {
+      transition: background-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    #header.scrolled {
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: 0 1px 20px rgba(60, 36, 21, 0.08);
+    }
+
+    /* ゴールドライン（ヘッダー下部） */
+    .header-gold-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #B8963E, transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    #header.scrolled .header-gold-line {
+      opacity: 1;
+    }
+
+    /* 金箔テキスト効果 */
+    .gold-text {
+      background: linear-gradient(
+        135deg,
+        #D4A853 0%,
+        #F5E6A3 25%,
+        #B8963E 50%,
+        #D4A853 75%,
+        #9A7B2F 100%
+      );
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gold-shimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes gold-shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* 金色光源のフロートアニメーション */
+    @keyframes float-glow {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.15); }
+    }
+
+    /* ガラスモルフィズムバッジ */
+    .glass-badge {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(184, 150, 62, 0.3);
+    }
+
+    /* ガラスカード */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(184, 150, 62, 0.15);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(184, 150, 62, 0.12);
+    }
+
+    /* ゴールドボーダーカード */
+    .gold-border-card {
+      border: 1px solid rgba(184, 150, 62, 0.2);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  border-color 0.4s ease;
+    }
+    .gold-border-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(184, 150, 62, 0.5);
+      box-shadow: 0 12px 40px rgba(184, 150, 62, 0.1);
+    }
+
+    /* セクションタイトル装飾 */
+    .section-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 16px;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #B8963E, transparent);
+    }
+
+    /* CTAプライマリボタン */
+    .cta-primary {
+      background-color: #2D6A4F;
+      color: #FFFFFF;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .cta-primary:hover {
+      background-color: #245a42;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(45, 106, 79, 0.3);
+    }
+
+    /* CTAゴールドボタン */
+    .cta-gold {
+      background: transparent;
+      border: 2px solid #B8963E;
+      color: #FFFFFF;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .cta-gold:hover {
+      background: rgba(184, 150, 62, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(184, 150, 62, 0.2);
+    }
+
+    /* サービスカード上辺ゴールドライン */
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #B8963E, transparent);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(184, 150, 62, 0.15);
+    }
+
+    /* お客様の声カード */
+    .testimonial-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #B8963E, transparent);
+    }
+
+    /* 星評価 */
+    .star-gold {
+      color: #B8963E;
+    }
+
+    /* ゴールドセパレーター */
+    .gold-separator {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #B8963E 30%, #B8963E 70%, transparent);
+    }
+
+    /* フッターゴールドライン */
+    .footer-gold-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 5%, #B8963E 30%, #B8963E 70%, transparent 95%);
+    }
+  </style>
+</head>
+<body class="bg-ivory text-walnut font-sans">
+
+  <!-- ============================================ -->
+  <!-- 1. ヘッダー（固定ナビ） -->
+  <!-- ============================================ -->
+  <header id="header" class="fixed top-0 left-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
+      <!-- ロゴ -->
+      <a href="#" class="header-link font-serif text-sm md:text-lg font-bold text-white tracking-wider" style="text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
+        仏壇クリーニング・修復専門
+      </a>
+
+      <!-- PCナビリンク -->
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#services" class="header-link text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide" style="text-shadow: 0 1px 4px rgba(0,0,0,0.6);">サービス</a>
+        <a href="#before-after" class="header-link text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide" style="text-shadow: 0 1px 4px rgba(0,0,0,0.6);">Before / After</a>
+        <a href="#area" class="header-link text-white hover:text-gold transition-colors duration-300 font-medium text-sm tracking-wide" style="text-shadow: 0 1px 4px rgba(0,0,0,0.6);">対応エリア</a>
+        <a href="#contact" class="cta-primary px-7 py-2.5 rounded-full font-medium text-sm tracking-wide min-h-[44px] flex items-center">
+          お問い合わせ
+        </a>
+      </nav>
+
+      <!-- ハンバーガーメニュー（モバイル） -->
+      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="メニューを開く">
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300 hamburger-line" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));"></span>
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300 hamburger-line" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));"></span>
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300 hamburger-line" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));"></span>
+      </button>
+    </div>
+
+    <!-- ヘッダー下部のゴールドライン -->
+    <div class="header-gold-line"></div>
+
+    <!-- モバイルメニュー -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-xl shadow-lg">
+      <nav class="flex flex-col px-6 py-8 gap-5">
+        <a href="#services" class="text-walnut text-lg py-3 border-b border-washi/50 mobile-menu-link tracking-wide">サービス</a>
+        <a href="#before-after" class="text-walnut text-lg py-3 border-b border-washi/50 mobile-menu-link tracking-wide">Before / After</a>
+        <a href="#area" class="text-walnut text-lg py-3 border-b border-washi/50 mobile-menu-link tracking-wide">対応エリア</a>
+        <a href="#contact" class="cta-primary text-white text-lg py-4 rounded-2xl text-center font-medium mobile-menu-link mt-2">
+          お問い合わせ
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- 2. ヒーローセクション（Apple風） -->
+  <!-- ============================================ -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- 背景画像 -->
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1920&q=80"
+        alt="和室の美しい空間"
+        class="w-full h-full object-cover"
+        loading="eager"
+      >
+      <!-- ダークオーバーレイ -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/55 to-black/70"></div>
+    </div>
+
+    <!-- 金色の光源エフェクト -->
+    <div
+      class="absolute top-1/3 left-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] pointer-events-none"
+      style="
+        background: radial-gradient(circle, rgba(184,150,62,0.15), transparent 70%);
+        filter: blur(80px);
+        animation: float-glow 8s ease-in-out infinite;
+        transform: translate(-50%, -50%);
+      "
+    ></div>
+
+    <!-- テキストコンテンツ -->
+    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <!-- サブコピー上 -->
+      <p
+        class="text-sm md:text-base tracking-[0.3em] mb-6 font-sans font-light"
+        style="color: rgba(184, 150, 62, 0.7);"
+        data-animate
+      >
+        大切なご先祖様のために
+      </p>
+
+      <!-- メインコピー（超大きな明朝体 + 金箔テキスト） -->
+      <h1
+        class="gold-text font-serif text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight"
+        data-animate
+        style="transition-delay: 0.15s;"
+      >
+        お仏壇修復
+      </h1>
+
+      <!-- サブコピー下 -->
+      <p
+        class="text-white text-lg md:text-2xl tracking-[0.15em] mb-16 font-sans font-light leading-relaxed"
+        data-animate
+        style="transition-delay: 0.3s;"
+      >
+        仏壇クリーニング・修復専門
+      </p>
+
+      <!-- 信頼バッジ3つ（ガラスモルフィズム） -->
+      <div
+        class="flex flex-wrap justify-center gap-5 md:gap-8 mb-16"
+        data-animate
+        style="transition-delay: 0.45s;"
+      >
+        <!-- 職人対応 -->
+        <div class="glass-badge flex items-center gap-3 px-6 py-3 rounded-2xl">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>
+          </svg>
+          <span class="text-white text-sm md:text-base font-medium tracking-wide">職人対応</span>
+        </div>
+        <!-- 出張対応 -->
+        <div class="glass-badge flex items-center gap-3 px-6 py-3 rounded-2xl">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+          </svg>
+          <span class="text-white text-sm md:text-base font-medium tracking-wide">出張対応</span>
+        </div>
+        <!-- 丁寧施工 -->
+        <div class="glass-badge flex items-center gap-3 px-6 py-3 rounded-2xl">
+          <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>
+          </svg>
+          <span class="text-white text-sm md:text-base font-medium tracking-wide">丁寧施工</span>
+        </div>
+      </div>
+
+      <!-- CTAボタン -->
+      <a
+        href="#contact"
+        class="cta-primary inline-flex items-center justify-center text-lg md:text-xl font-bold px-12 py-5 md:px-16 md:py-6 rounded-full min-h-[56px] shadow-lg"
+        data-animate
+        style="transition-delay: 0.6s;"
+      >
+        無料相談はこちら
+      </a>
+    </div>
+
+    <!-- 下スクロール示唆 -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 3. 強みセクション（3つのポイント） -->
+  <!-- ============================================ -->
+  <section class="py-24 md:py-32 bg-ivory">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <!-- セクションタイトル -->
+      <div class="text-center mb-20" data-animate>
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4 font-medium">Our Strengths</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight">
+          <span class="section-title">選ばれる<span class="text-gold">3つの理由</span></span>
+        </h2>
+      </div>
+
+      <!-- 3カード + ゴールド区切り線 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0 items-stretch">
+
+        <!-- ポイント1: 出張費が格安 -->
+        <div class="flex">
+          <div class="glass-card rounded-3xl p-10 md:p-12 text-center flex-1" data-animate>
+            <div class="w-20 h-20 mx-auto mb-8 bg-gold/10 rounded-2xl flex items-center justify-center">
+              <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">出張費が格安</h3>
+            <p class="text-base leading-loose text-walnut/70">
+              愛知県を拠点に、お客様のもとへ直接お伺い。余分な中間コストをカットし、出張費を最小限に抑えています。
+            </p>
+          </div>
+        </div>
+
+        <!-- ゴールド区切り線（PCのみ） + ポイント2 -->
+        <div class="flex">
+          <!-- 左の区切り線 -->
+          <div class="hidden md:flex items-center">
+            <div class="w-px h-2/3 bg-gradient-to-b from-transparent via-gold/30 to-transparent"></div>
+          </div>
+          <div class="glass-card rounded-3xl p-10 md:p-12 text-center flex-1" data-animate style="transition-delay: 0.15s;">
+            <div class="w-20 h-20 mx-auto mb-8 bg-gold/10 rounded-2xl flex items-center justify-center">
+              <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0016.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.003 6.003 0 01-5.54 0"/>
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">実績の信頼性</h3>
+            <p class="text-base leading-loose text-walnut/70">
+              多くのお客様にご満足いただいてきた確かな実績。大切なお仏壇を安心してお任せいただけます。
+            </p>
+          </div>
+          <!-- 右の区切り線 -->
+          <div class="hidden md:flex items-center">
+            <div class="w-px h-2/3 bg-gradient-to-b from-transparent via-gold/30 to-transparent"></div>
+          </div>
+        </div>
+
+        <!-- ポイント3: 職人の確かな技 -->
+        <div class="flex">
+          <div class="glass-card rounded-3xl p-10 md:p-12 text-center flex-1" data-animate style="transition-delay: 0.3s;">
+            <div class="w-20 h-20 mx-auto mb-8 bg-gold/10 rounded-2xl flex items-center justify-center">
+              <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">職人の確かな技</h3>
+            <p class="text-base leading-loose text-walnut/70">
+              長年の経験を積んだ専門の職人が、一つひとつ手作業で丁寧に仕上げます。細部までこだわった仕上がりをお約束します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 4. Before / After セクション -->
+  <!-- ============================================ -->
+  <section id="before-after" class="py-24 md:py-32 bg-washi">
+    <div class="max-w-5xl mx-auto px-6 md:px-10">
+      <!-- セクションタイトル -->
+      <div class="text-center mb-20" data-animate>
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4 font-medium">Before & After</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight">
+          <span class="section-title">修復のビフォー・アフター</span>
+        </h2>
+      </div>
+
+      <!-- 2枚並列表示 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14" data-animate>
+        <!-- Before -->
+        <div class="text-center">
+          <div class="relative rounded-2xl overflow-hidden mb-5 border border-gold/20">
+            <img
+              src="images/before.png"
+              alt="修復前の仏壇"
+              class="w-full aspect-[4/5] object-cover"
+              loading="lazy"
+            >
+            <div class="absolute top-5 left-5 bg-walnut/70 text-white px-6 py-2 rounded-full text-sm font-bold tracking-[0.15em] backdrop-blur-sm">
+              Before
+            </div>
+          </div>
+          <p class="text-walnut/60 text-base md:text-lg tracking-wide">修復前</p>
+        </div>
+        <!-- After -->
+        <div class="text-center">
+          <div class="relative rounded-2xl overflow-hidden mb-5 border border-gold/20">
+            <img
+              src="images/after.png"
+              alt="修復後の仏壇"
+              class="w-full aspect-[4/5] object-cover"
+              loading="lazy"
+            >
+            <div class="absolute top-5 left-5 bg-gold/80 text-white px-6 py-2 rounded-full text-sm font-bold tracking-[0.15em] backdrop-blur-sm">
+              After
+            </div>
+          </div>
+          <p class="text-walnut/60 text-base md:text-lg tracking-wide">修復後</p>
+        </div>
+      </div>
+
+      <p class="text-center mt-12 text-lg md:text-xl text-walnut/70 leading-relaxed tracking-wide" data-animate>
+        丁寧に洗浄・修復し、輝きを取り戻します
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 5. サービスカード（3枚） -->
+  <!-- ============================================ -->
+  <section id="services" class="py-24 md:py-32 bg-ivory">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <!-- セクションタイトル -->
+      <div class="text-center mb-20" data-animate>
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4 font-medium">Services</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight">
+          <span class="section-title">サービス内容</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        <!-- 仏壇クリーニング -->
+        <div class="service-card bg-white rounded-2xl p-10 md:p-12 shadow-sm cursor-pointer" data-animate>
+          <div class="w-16 h-16 mb-8 bg-gold/8 rounded-2xl flex items-center justify-center">
+            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">仏壇クリーニング</h3>
+          <p class="text-base leading-loose text-walnut/70">
+            長年のほこりや汚れを丁寧に除去。金箔部分や漆塗り面を傷つけず、本来の美しさを取り戻します。定期的なクリーニングで、お仏壇を長く美しく保てます。
+          </p>
+        </div>
+
+        <!-- 仏壇修復・修理 -->
+        <div class="service-card bg-white rounded-2xl p-10 md:p-12 shadow-sm cursor-pointer" data-animate style="transition-delay: 0.15s;">
+          <div class="w-16 h-16 mb-8 bg-gold/8 rounded-2xl flex items-center justify-center">
+            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">仏壇修復・修理</h3>
+          <p class="text-base leading-loose text-walnut/70">
+            傷や剥がれ、変色した部分を職人の技で修復。金箔の貼り直しや漆の塗り直しなど、お仏壇の状態に合わせた最適な修復を行います。
+          </p>
+        </div>
+
+        <!-- 仏具の修繕 -->
+        <div class="service-card bg-white rounded-2xl p-10 md:p-12 shadow-sm cursor-pointer" data-animate style="transition-delay: 0.3s;">
+          <div class="w-16 h-16 mb-8 bg-gold/8 rounded-2xl flex items-center justify-center">
+            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">仏具の修繕</h3>
+          <p class="text-base leading-loose text-walnut/70">
+            おりん、花瓶、燭台などの仏具も丁寧に修繕。くすみや変色を取り除き、お仏壇全体の調和を保ちます。仏具一つから承ります。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 6. 職人紹介セクション -->
+  <!-- ============================================ -->
+  <section class="py-24 md:py-32 bg-washi">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <!-- 写真（左） -->
+        <div class="order-2 md:order-1" data-animate>
+          <div class="rounded-2xl overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80"
+              alt="職人の手元"
+              class="w-full h-80 md:h-[520px] object-cover"
+              loading="lazy"
+            >
+          </div>
+        </div>
+
+        <!-- テキスト（右） -->
+        <div class="order-1 md:order-2 relative" data-animate style="transition-delay: 0.15s;">
+          <!-- 大きな引用開始マーク（ゴールド、低opacity） -->
+          <span
+            class="absolute -top-8 -left-4 md:-top-10 md:-left-8 font-serif text-8xl md:text-9xl leading-none pointer-events-none select-none"
+            style="color: rgba(184, 150, 62, 0.12);"
+          >&ldquo;</span>
+
+          <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4 font-medium">Craftsman</p>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold mb-10 leading-tight tracking-wide">
+            職人の想い
+          </h2>
+          <p class="text-lg md:text-xl leading-loose text-walnut/80 mb-8">
+            長年の経験を持つ職人が、一つ一つ丁寧に仕上げます。
+          </p>
+          <p class="text-base md:text-lg leading-loose text-walnut/70">
+            お仏壇は、ご家族の歴史と想いが詰まった大切なものです。私たちは、その想いを受け継ぎながら、一台一台に心を込めて修復作業を行っています。機械任せではなく、職人の目と手で状態を見極め、最適な方法で美しさを蘇らせます。お客様に「頼んでよかった」と言っていただけることが、何よりの喜びです。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 7. 出張費格安アピール -->
+  <!-- ============================================ -->
+  <section class="py-24 md:py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #3C2415 0%, #5a3a24 40%, #4a3018 70%, #3C2415 100%);">
+    <!-- 装飾的な金の光 -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none" style="background: radial-gradient(circle, rgba(184,150,62,0.08), transparent 70%);"></div>
+
+    <div class="max-w-4xl mx-auto px-6 md:px-10 text-center relative z-10" data-animate>
+      <p class="text-gold/60 text-xs tracking-[0.3em] uppercase mb-6 font-medium">Special</p>
+
+      <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+        <span class="gold-text">出張費格安</span>
+      </h2>
+
+      <p class="text-lg md:text-xl text-white/70 leading-loose max-w-2xl mx-auto mb-12 tracking-wide">
+        愛知県を拠点に、お客様のもとへ直接お伺いします。<br class="hidden md:block">
+        余計な中間マージンがないため、出張費を大幅に抑えてサービスをご提供できます。
+      </p>
+
+      <!-- CTAボタン（金ボーダー） -->
+      <a
+        href="#contact"
+        class="cta-gold inline-flex items-center justify-center text-lg md:text-xl font-bold px-12 py-5 md:px-14 md:py-6 rounded-full min-h-[56px]"
+      >
+        無料で見積もりを依頼
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 8. 対応エリアセクション -->
+  <!-- ============================================ -->
+  <section id="area" class="py-24 md:py-32 bg-ivory">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <!-- セクションタイトル -->
+      <div class="text-center mb-20" data-animate>
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4 font-medium">Service Area</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight">
+          <span class="section-title">対応エリア</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <!-- SVG地図 -->
+        <div class="bg-washi rounded-3xl p-8 md:p-10 flex items-center justify-center border border-gold/10" data-animate>
+          <img src="images/area-map.svg" alt="対応エリア地図" class="w-full h-auto max-h-[420px]" loading="lazy">
+        </div>
+
+        <!-- 対応地域リスト -->
+        <div data-animate style="transition-delay: 0.15s;">
+          <p class="text-xl md:text-2xl font-bold font-serif mb-8 leading-relaxed tracking-wide">
+            愛知県を拠点に<br>車で片道3〜4時間圏内まで出張対応
+          </p>
+          <div class="grid grid-cols-2 gap-4">
+            <!-- 愛知県（拠点） -->
+            <div class="flex items-center gap-3 bg-gold/10 rounded-2xl px-5 py-4 border border-gold/20">
+              <svg class="w-5 h-5 text-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="font-bold text-walnut tracking-wide">愛知県</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 border border-washi">
+              <svg class="w-5 h-5 text-matcha flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-walnut">岐阜県</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 border border-washi">
+              <svg class="w-5 h-5 text-matcha flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-walnut">三重県</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 border border-washi">
+              <svg class="w-5 h-5 text-matcha flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-walnut">静岡県</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 border border-washi">
+              <svg class="w-5 h-5 text-matcha flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-walnut">長野県南部</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 border border-washi">
+              <svg class="w-5 h-5 text-matcha flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-walnut">滋賀県</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 border border-washi">
+              <svg class="w-5 h-5 text-matcha flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-walnut">京都府</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 border border-washi">
+              <svg class="w-5 h-5 text-matcha flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-walnut">大阪府北部</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 9. お客様の声 -->
+  <!-- ============================================ -->
+  <section class="py-24 md:py-32 bg-washi">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <!-- セクションタイトル -->
+      <div class="text-center mb-20" data-animate>
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4 font-medium">Voice</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight">
+          <span class="section-title">お客様の声</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        <!-- 口コミ1 -->
+        <div class="testimonial-card bg-white rounded-2xl p-8 md:p-10 shadow-sm" data-animate>
+          <div class="flex gap-1 mb-5">
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+          </div>
+          <p class="text-base leading-loose text-walnut/70 mb-8">
+            祖母の代から使っているお仏壇が、見違えるほどきれいになりました。金箔の輝きが戻り、家族みんなで感動しています。職人さんの丁寧な仕事に感謝です。
+          </p>
+          <div class="flex items-center gap-4 border-t border-washi/50 pt-5">
+            <div class="w-11 h-11 bg-gold/10 rounded-full flex items-center justify-center">
+              <span class="text-gold font-bold text-sm">T.S</span>
+            </div>
+            <div>
+              <p class="font-medium text-sm tracking-wide">T.S 様</p>
+              <p class="text-walnut/40 text-xs mt-0.5">愛知県名古屋市</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ2 -->
+        <div class="testimonial-card bg-white rounded-2xl p-8 md:p-10 shadow-sm" data-animate style="transition-delay: 0.15s;">
+          <div class="flex gap-1 mb-5">
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+          </div>
+          <p class="text-base leading-loose text-walnut/70 mb-8">
+            出張費が格安だったので助かりました。他社では見積もりだけで高額でしたが、こちらは良心的な価格で丁寧に仕上げていただけました。大満足です。
+          </p>
+          <div class="flex items-center gap-4 border-t border-washi/50 pt-5">
+            <div class="w-11 h-11 bg-gold/10 rounded-full flex items-center justify-center">
+              <span class="text-gold font-bold text-sm">M.K</span>
+            </div>
+            <div>
+              <p class="font-medium text-sm tracking-wide">M.K 様</p>
+              <p class="text-walnut/40 text-xs mt-0.5">岐阜県岐阜市</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ3 -->
+        <div class="testimonial-card bg-white rounded-2xl p-8 md:p-10 shadow-sm" data-animate style="transition-delay: 0.3s;">
+          <div class="flex gap-1 mb-5">
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl">&#9733;</span>
+            <span class="star-gold text-xl text-walnut/20">&#9733;</span>
+          </div>
+          <p class="text-base leading-loose text-walnut/70 mb-8">
+            仏具のおりんが黒ずんでいたのですが、ピカピカに磨いていただきました。仏壇全体のクリーニングもお願いし、新品のような仕上がりに驚きました。
+          </p>
+          <div class="flex items-center gap-4 border-t border-washi/50 pt-5">
+            <div class="w-11 h-11 bg-gold/10 rounded-full flex items-center justify-center">
+              <span class="text-gold font-bold text-sm">Y.H</span>
+            </div>
+            <div>
+              <p class="font-medium text-sm tracking-wide">Y.H 様</p>
+              <p class="text-walnut/40 text-xs mt-0.5">三重県四日市市</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 10. お問い合わせCTA -->
+  <!-- ============================================ -->
+  <section id="contact" class="relative overflow-hidden">
+    <!-- 上部ゴールドセパレーター -->
+    <div class="gold-separator"></div>
+
+    <div class="py-24 md:py-32 bg-walnut relative">
+      <!-- 装飾背景 -->
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none" style="background: radial-gradient(circle, rgba(184,150,62,0.05), transparent 70%); transform: translate(30%, -30%);"></div>
+
+      <div class="max-w-3xl mx-auto px-6 md:px-10 text-center relative z-10" data-animate>
+        <p class="text-gold/60 text-xs tracking-[0.3em] uppercase mb-4 font-medium">Contact</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-8 leading-tight tracking-wide">
+          お気軽にご相談ください
+        </h2>
+        <p class="text-white/60 text-lg leading-loose mb-14 tracking-wide">
+          お見積もりは無料です。お仏壇の状態やご要望をお聞かせください。<br class="hidden md:block">
+          専門の職人が最適なプランをご提案いたします。
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <!-- 電話ボタン -->
+          <a href="tel:0120-000-000" class="w-full sm:w-auto cta-primary inline-flex items-center justify-center gap-3 text-lg md:text-xl font-bold px-10 py-5 rounded-full min-h-[56px] shadow-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+            </svg>
+            0120-XXX-XXX
+          </a>
+
+          <!-- メール相談ボタン -->
+          <a href="contact.html" class="w-full sm:w-auto cta-gold inline-flex items-center justify-center gap-3 text-lg md:text-xl font-bold px-10 py-5 rounded-full min-h-[56px]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+            </svg>
+            メールで相談
+          </a>
+        </div>
+
+        <p class="text-white/30 text-sm mt-10 tracking-wide">受付時間: 9:00〜18:00（月〜土）</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 11. フッター -->
+  <!-- ============================================ -->
+  <footer class="bg-walnut">
+    <!-- 上部ゴールドライン -->
+    <div class="footer-gold-line"></div>
+
+    <div class="py-14 md:py-20">
+      <div class="max-w-6xl mx-auto px-6 md:px-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 mb-12">
+          <!-- 会社情報 -->
+          <div>
+            <p class="font-serif text-lg font-bold text-white mb-5 tracking-wide">株式会社○○仏壇サービス</p>
+            <div class="space-y-2.5 text-white/50 text-sm leading-relaxed">
+              <p>〒450-0000 愛知県名古屋市○○区○○町1-2-3</p>
+              <p>TEL: 0120-XXX-XXX</p>
+              <p>営業時間: 9:00〜18:00（月〜土）</p>
+              <p>定休日: 日曜・祝日</p>
+            </div>
+          </div>
+
+          <!-- ナビゲーション -->
+          <div>
+            <p class="font-bold text-white mb-5 tracking-wide">メニュー</p>
+            <nav class="space-y-3">
+              <a href="#services" class="block text-white/50 hover:text-gold transition-colors duration-300 text-sm">サービス</a>
+              <a href="#before-after" class="block text-white/50 hover:text-gold transition-colors duration-300 text-sm">Before / After</a>
+              <a href="#area" class="block text-white/50 hover:text-gold transition-colors duration-300 text-sm">対応エリア</a>
+              <a href="#contact" class="block text-white/50 hover:text-gold transition-colors duration-300 text-sm">お問い合わせ</a>
+            </nav>
+          </div>
+
+          <!-- 対応エリア一覧 -->
+          <div>
+            <p class="font-bold text-white mb-5 tracking-wide">対応エリア</p>
+            <p class="text-white/50 text-sm leading-loose">
+              愛知県 / 岐阜県 / 三重県 / 静岡県 / 長野県南部 / 滋賀県 / 京都府 / 大阪府北部
+            </p>
+          </div>
+        </div>
+
+        <!-- コピーライト -->
+        <div class="border-t border-white/10 pt-8 text-center">
+          <p class="text-white/30 text-sm tracking-wide">&copy; 2024 仏壇クリーニング・修復専門</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- カスタムJavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

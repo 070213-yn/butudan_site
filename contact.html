@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | 仏壇クリーニング・修復専門</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FAF6F0',
+            walnut: '#3C2415',
+            gold: '#B8963E',
+            washi: '#F5EDE3',
+            matcha: '#2D6A4F',
+          },
+          fontFamily: {
+            serif: ['"Noto Serif JP"', 'serif'],
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #3C2415;
+      background-color: #FAF6F0;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Noto Serif JP', serif;
+    }
+    /* スクロールアニメーション初期状態 */
+    .data-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .data-animate.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* フォーカス時の金色ボーダー */
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #B8963E !important;
+      box-shadow: 0 0 0 3px rgba(184, 150, 62, 0.2);
+    }
+    /* ドラッグ&ドロップゾーン */
+    #drop-zone.drag-over {
+      border-color: #B8963E;
+      background-color: #F5EDE3;
+    }
+  </style>
+</head>
+<body class="bg-ivory text-walnut font-sans">
+
+  <!-- ヘッダー -->
+  <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- ロゴ -->
+      <a href="index.html" class="text-lg md:text-xl font-serif font-bold text-walnut hover:text-gold transition-colors">
+        仏壇クリーニング・修復専門
+      </a>
+      <!-- PCナビ -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html#service" class="text-walnut hover:text-gold transition-colors font-medium">サービス</a>
+        <a href="index.html#before-after" class="text-walnut hover:text-gold transition-colors font-medium">Before・After</a>
+        <a href="index.html#area" class="text-walnut hover:text-gold transition-colors font-medium">対応エリア</a>
+        <a href="contact.html" class="bg-matcha text-white px-5 py-2 rounded-lg hover:bg-opacity-90 transition-colors font-medium">お問い合わせ</a>
+      </nav>
+      <!-- ハンバーガーボタン -->
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5" aria-label="メニューを開く">
+        <span class="block w-6 h-0.5 bg-walnut transition-all duration-300 origin-center" id="bar1"></span>
+        <span class="block w-6 h-0.5 bg-walnut transition-all duration-300" id="bar2"></span>
+        <span class="block w-6 h-0.5 bg-walnut transition-all duration-300 origin-center" id="bar3"></span>
+      </button>
+    </div>
+    <!-- モバイルメニュー -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <nav class="flex flex-col px-6 py-4 space-y-4">
+        <a href="index.html#service" class="text-walnut hover:text-gold transition-colors font-medium py-2 border-b border-washi">サービス</a>
+        <a href="index.html#before-after" class="text-walnut hover:text-gold transition-colors font-medium py-2 border-b border-washi">Before・After</a>
+        <a href="index.html#area" class="text-walnut hover:text-gold transition-colors font-medium py-2 border-b border-washi">対応エリア</a>
+        <a href="contact.html" class="bg-matcha text-white text-center px-5 py-3 rounded-lg hover:bg-opacity-90 transition-colors font-medium">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- スペーサー（固定ヘッダー分） -->
+  <div class="h-20"></div>
+
+  <!-- パンくずリスト -->
+  <div class="max-w-7xl mx-auto px-4 py-4">
+    <nav aria-label="パンくずリスト" class="text-sm text-walnut/60">
+      <ol class="flex items-center space-x-2">
+        <li><a href="index.html" class="hover:text-gold transition-colors">ホーム</a></li>
+        <li class="text-walnut/40">&gt;</li>
+        <li class="text-walnut font-medium">お問い合わせ</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-7xl mx-auto px-4 pb-20">
+    <div class="flex flex-col lg:flex-row gap-10">
+
+      <!-- フォームエリア -->
+      <div class="flex-1">
+        <section class="data-animate">
+          <h1 class="text-2xl md:text-3xl font-serif font-bold mb-2">お問い合わせ</h1>
+          <p class="text-walnut/70 mb-8">仏壇のクリーニング・修復に関するご相談はこちらからお気軽にどうぞ。</p>
+
+          <!-- テストサイト注意書き -->
+          <div class="bg-red-50 border border-red-300 rounded-lg p-4 mb-8">
+            <p class="text-red-600 font-bold text-sm md:text-base">※こちらはテストサイトです。実際には送信されません。</p>
+          </div>
+
+          <form id="contact-form" class="space-y-6" novalidate>
+
+            <!-- お名前 -->
+            <div class="data-animate">
+              <label for="name" class="block text-base md:text-lg font-medium mb-2">
+                お名前 <span class="text-red-500 text-sm">*必須</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="例: 山田太郎"
+                class="w-full min-h-[48px] px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors"
+              >
+            </div>
+
+            <!-- 電話番号 -->
+            <div class="data-animate">
+              <label for="tel" class="block text-base md:text-lg font-medium mb-2">
+                電話番号 <span class="text-red-500 text-sm">*必須</span>
+              </label>
+              <input
+                type="tel"
+                id="tel"
+                name="tel"
+                required
+                placeholder="例: 09012345678"
+                class="w-full min-h-[48px] px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors"
+              >
+            </div>
+
+            <!-- メールアドレス -->
+            <div class="data-animate">
+              <label for="email" class="block text-base md:text-lg font-medium mb-2">
+                メールアドレス <span class="text-red-500 text-sm">*必須</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="例: example@mail.com"
+                class="w-full min-h-[48px] px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors"
+              >
+            </div>
+
+            <!-- 郵便番号 -->
+            <div class="data-animate">
+              <label for="zipcode" class="block text-base md:text-lg font-medium mb-2">郵便番号</label>
+              <div class="flex items-center gap-3">
+                <input
+                  type="text"
+                  id="zipcode"
+                  name="zipcode"
+                  placeholder="例: 4600001"
+                  maxlength="8"
+                  inputmode="numeric"
+                  class="w-48 min-h-[48px] px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors"
+                >
+                <button
+                  type="button"
+                  id="zipcode-search"
+                  class="min-h-[48px] px-5 py-3 bg-gold text-white rounded-lg font-medium hover:bg-gold/90 transition-colors text-sm whitespace-nowrap"
+                >住所検索</button>
+                <span id="zipcode-status" class="text-sm text-walnut/60 hidden"></span>
+              </div>
+              <p class="text-xs text-walnut/50 mt-1">ハイフンなしで入力してください。入力すると自動で住所が入ります。</p>
+            </div>
+
+            <!-- 住所: 都道府県 + 市区町村 -->
+            <div class="data-animate">
+              <label for="prefecture" class="block text-base md:text-lg font-medium mb-2">住所</label>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <select
+                  id="prefecture"
+                  name="prefecture"
+                  class="sm:w-1/3 min-h-[48px] px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors"
+                >
+                  <option value="">都道府県を選択</option>
+                  <option value="北海道">北海道</option>
+                  <option value="青森県">青森県</option>
+                  <option value="岩手県">岩手県</option>
+                  <option value="宮城県">宮城県</option>
+                  <option value="秋田県">秋田県</option>
+                  <option value="山形県">山形県</option>
+                  <option value="福島県">福島県</option>
+                  <option value="茨城県">茨城県</option>
+                  <option value="栃木県">栃木県</option>
+                  <option value="群馬県">群馬県</option>
+                  <option value="埼玉県">埼玉県</option>
+                  <option value="千葉県">千葉県</option>
+                  <option value="東京都">東京都</option>
+                  <option value="神奈川県">神奈川県</option>
+                  <option value="新潟県">新潟県</option>
+                  <option value="富山県">富山県</option>
+                  <option value="石川県">石川県</option>
+                  <option value="福井県">福井県</option>
+                  <option value="山梨県">山梨県</option>
+                  <option value="長野県">長野県</option>
+                  <option value="岐阜県">岐阜県</option>
+                  <option value="静岡県">静岡県</option>
+                  <option value="愛知県">愛知県</option>
+                  <option value="三重県">三重県</option>
+                  <option value="滋賀県">滋賀県</option>
+                  <option value="京都府">京都府</option>
+                  <option value="大阪府">大阪府</option>
+                  <option value="兵庫県">兵庫県</option>
+                  <option value="奈良県">奈良県</option>
+                  <option value="和歌山県">和歌山県</option>
+                  <option value="鳥取県">鳥取県</option>
+                  <option value="島根県">島根県</option>
+                  <option value="岡山県">岡山県</option>
+                  <option value="広島県">広島県</option>
+                  <option value="山口県">山口県</option>
+                  <option value="徳島県">徳島県</option>
+                  <option value="香川県">香川県</option>
+                  <option value="愛媛県">愛媛県</option>
+                  <option value="高知県">高知県</option>
+                  <option value="福岡県">福岡県</option>
+                  <option value="佐賀県">佐賀県</option>
+                  <option value="長崎県">長崎県</option>
+                  <option value="熊本県">熊本県</option>
+                  <option value="大分県">大分県</option>
+                  <option value="宮崎県">宮崎県</option>
+                  <option value="鹿児島県">鹿児島県</option>
+                  <option value="沖縄県">沖縄県</option>
+                </select>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  placeholder="市区町村・番地"
+                  class="flex-1 min-h-[48px] px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors"
+                >
+              </div>
+            </div>
+
+            <!-- お問い合わせ種別 -->
+            <div class="data-animate">
+              <label for="inquiry-type" class="block text-base md:text-lg font-medium mb-2">お問い合わせ種別</label>
+              <select
+                id="inquiry-type"
+                name="inquiry-type"
+                class="w-full min-h-[48px] px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors"
+              >
+                <option value="">選択してください</option>
+                <option value="クリーニング">クリーニング</option>
+                <option value="修復・修理">修復・修理</option>
+                <option value="仏具修繕">仏具修繕</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+
+            <!-- 仏壇のサイズ -->
+            <div class="data-animate">
+              <label for="butsudan-size" class="block text-base md:text-lg font-medium mb-2">
+                仏壇のサイズ <span class="text-walnut/50 text-sm">（任意）</span>
+              </label>
+              <select
+                id="butsudan-size"
+                name="butsudan-size"
+                class="w-full min-h-[48px] px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors"
+              >
+                <option value="">選択してください</option>
+                <option value="小型（上置き型）">小型（上置き型）</option>
+                <option value="中型">中型</option>
+                <option value="大型（床置き型）">大型（床置き型）</option>
+                <option value="わからない">わからない</option>
+              </select>
+            </div>
+
+            <!-- お問い合わせ内容 -->
+            <div class="data-animate">
+              <label for="message" class="block text-base md:text-lg font-medium mb-2">
+                お問い合わせ内容 <span class="text-red-500 text-sm">*必須</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="6"
+                placeholder="仏壇の状態やご要望をお聞かせください"
+                class="w-full px-4 py-3 border-2 border-washi rounded-lg bg-white text-walnut text-base transition-colors resize-y"
+              ></textarea>
+            </div>
+
+            <!-- 写真添付 -->
+            <div class="data-animate">
+              <label class="block text-base md:text-lg font-medium mb-2">
+                写真添付 <span class="text-walnut/50 text-sm">（任意・複数可）</span>
+              </label>
+              <div
+                id="drop-zone"
+                class="border-2 border-dashed border-washi rounded-lg p-8 text-center cursor-pointer hover:border-gold transition-colors bg-white"
+              >
+                <div class="flex flex-col items-center space-y-3">
+                  <!-- カメラアイコン（SVG） -->
+                  <svg class="w-12 h-12 text-walnut/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <p class="text-walnut/60 text-sm md:text-base">
+                    ここにファイルをドラッグ&ドロップ<br>
+                    または<span class="text-gold font-medium underline">クリックして選択</span>
+                  </p>
+                  <p class="text-walnut/40 text-xs">対応形式: JPG, PNG, GIF</p>
+                </div>
+                <input
+                  type="file"
+                  id="photo-upload"
+                  name="photos"
+                  multiple
+                  accept="image/*"
+                  class="hidden"
+                >
+              </div>
+              <!-- プレビューエリア -->
+              <div id="photo-preview" class="grid grid-cols-3 sm:grid-cols-4 gap-3 mt-4"></div>
+            </div>
+
+            <!-- 送信ボタン -->
+            <div class="data-animate pt-4">
+              <button
+                type="submit"
+                class="w-full md:w-auto bg-matcha text-white text-lg font-bold px-12 py-4 rounded-lg hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                送信する
+              </button>
+            </div>
+
+          </form>
+        </section>
+      </div>
+
+      <!-- サイドバー（PCのみ） -->
+      <aside class="hidden lg:block w-80 flex-shrink-0">
+        <div class="sticky top-28 space-y-6">
+          <!-- 電話問い合わせ -->
+          <div class="data-animate bg-white rounded-xl shadow-md p-6 border border-washi">
+            <h3 class="font-serif text-lg font-bold mb-4 text-center">お急ぎの方はお電話ください</h3>
+            <div class="text-center">
+              <p class="text-gold text-2xl font-bold font-serif tracking-wide">0120-XXX-XXX</p>
+              <p class="text-walnut/60 text-sm mt-2">通話料無料</p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-washi text-center">
+              <p class="text-sm text-walnut/70">営業時間</p>
+              <p class="text-base font-medium">9:00 - 18:00</p>
+              <p class="text-sm text-walnut/60">（月〜土 / 日祝休み）</p>
+            </div>
+          </div>
+
+          <!-- 補足情報 -->
+          <div class="data-animate bg-washi rounded-xl p-6">
+            <h3 class="font-serif text-base font-bold mb-3">ご相談の流れ</h3>
+            <ol class="space-y-3 text-sm text-walnut/80">
+              <li class="flex items-start gap-2">
+                <span class="bg-gold text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
+                <span>お問い合わせ・ご相談</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="bg-gold text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
+                <span>現地確認・お見積もり</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="bg-gold text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
+                <span>作業開始・完了ご報告</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-walnut text-white/80">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 会社情報 -->
+        <div>
+          <h3 class="font-serif text-lg font-bold text-white mb-4">仏壇クリーニング・修復専門</h3>
+          <p class="text-sm leading-relaxed">
+            大切なご家族の想いが詰まった仏壇を、<br>
+            熟練の職人が心を込めて修復いたします。
+          </p>
+        </div>
+        <!-- ナビ -->
+        <div>
+          <h4 class="font-bold text-white mb-4">メニュー</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html#service" class="hover:text-gold transition-colors">サービス</a></li>
+            <li><a href="index.html#before-after" class="hover:text-gold transition-colors">Before・After</a></li>
+            <li><a href="index.html#area" class="hover:text-gold transition-colors">対応エリア</a></li>
+            <li><a href="contact.html" class="hover:text-gold transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+        <!-- 連絡先 -->
+        <div>
+          <h4 class="font-bold text-white mb-4">お問い合わせ</h4>
+          <p class="text-sm">電話: 0120-XXX-XXX</p>
+          <p class="text-sm mt-1">営業時間: 9:00 - 18:00（月〜土）</p>
+        </div>
+      </div>
+      <div class="border-t border-white/20 mt-8 pt-6 text-center text-xs text-white/50">
+        <p>&copy; 2026 仏壇クリーニング・修復専門. All Rights Reserved.</p>
+        <p class="mt-1">※こちらはテストサイトです。実在のサービスではありません。</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
