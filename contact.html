@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="仏壇美匠堂へのお問い合わせ。お仏壇のクリーニング・修復に関するご相談・お見積りはお気軽にどうぞ。お電話・メール・フォームにて受付中。">
+  <title>お問い合わせ | 仏壇美匠堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon"><i class="fas fa-torii-gate"></i></span>
+        <span>
+          仏壇美匠堂
+          <span class="header__logo-sub">BISHOUDO</span>
+        </span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+      <nav class="nav" id="nav" aria-label="メインナビゲーション">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">ホーム</a></li>
+          <li><a href="services.html" class="nav__link">サービス</a></li>
+          <li><a href="about.html" class="nav__link">会社紹介</a></li>
+          <li><a href="contact.html" class="nav__link active">お問い合わせ</a></li>
+        </ul>
+        <div class="nav__phone">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <a href="tel:0001234567">000-123-4567</a>
+            <span class="nav__phone-note">受付 9:00〜18:00</span>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main>
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header">
+      <div class="container page-header__content">
+        <nav class="breadcrumb" aria-label="パンくずリスト">
+          <a href="index.html">ホーム</a>
+          <span class="breadcrumb__separator"><i class="fas fa-chevron-right"></i></span>
+          <span>お問い合わせ</span>
+        </nav>
+        <h1 class="page-header__title">お問い合わせ</h1>
+      </div>
+    </section>
+
+    <!-- ========== お問い合わせ方法 ========== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header fade-in">
+          <h2 class="section__title">お問い合わせ方法</h2>
+          <p class="section__subtitle">お気軽にご相談ください。お見積りは無料です。</p>
+        </div>
+
+        <div class="contact-methods stagger">
+          <div class="contact-method fade-in">
+            <div class="contact-method__icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <h3 class="contact-method__title">お電話でのお問い合わせ</h3>
+            <div class="contact-method__detail">
+              <a href="tel:0001234567">000-123-4567</a>
+            </div>
+            <p class="contact-method__note">受付時間：9:00〜18:00（年中無休）</p>
+          </div>
+
+          <div class="contact-method fade-in">
+            <div class="contact-method__icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3 class="contact-method__title">メールでのお問い合わせ</h3>
+            <div class="contact-method__detail">
+              <a href="mailto:info@example.com">info@example.com</a>
+            </div>
+            <p class="contact-method__note">24時間受付・翌営業日までにご返信</p>
+          </div>
+
+          <div class="contact-method fade-in">
+            <div class="contact-method__icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <h3 class="contact-method__title">フォームでのお問い合わせ</h3>
+            <div class="contact-method__detail">
+              下記フォームより送信
+            </div>
+            <p class="contact-method__note">必要事項をご入力の上、送信してください</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== お問い合わせフォーム ========== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__header fade-in">
+          <h2 class="section__title">お問い合わせフォーム</h2>
+          <p class="section__subtitle">以下のフォームに必要事項をご入力ください</p>
+        </div>
+
+        <div class="contact-grid fade-in">
+          <!-- 左カラム：フォーム -->
+          <form class="form" action="#" method="POST">
+            <div class="form__group">
+              <label class="form__label" for="name">
+                お名前 <span class="form__required">必須</span>
+              </label>
+              <input type="text" id="name" name="name" class="form__input" placeholder="例：山田 太郎" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="tel">
+                お電話番号
+              </label>
+              <input type="tel" id="tel" name="tel" class="form__input" placeholder="例：090-1234-5678">
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="email">
+                メールアドレス <span class="form__required">必須</span>
+              </label>
+              <input type="email" id="email" name="email" class="form__input" placeholder="例：example@mail.com" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="address">
+                ご住所
+              </label>
+              <input type="text" id="address" name="address" class="form__input" placeholder="例：愛知県名古屋市中区〇〇町1-2-3">
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="butsudan-type">
+                お仏壇の種類
+              </label>
+              <select id="butsudan-type" name="butsudan-type" class="form__select">
+                <option value="">選択してください</option>
+                <option value="金仏壇">金仏壇</option>
+                <option value="唐木仏壇">唐木仏壇</option>
+                <option value="モダン仏壇">モダン仏壇</option>
+                <option value="その他">その他</option>
+                <option value="わからない">わからない</option>
+              </select>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="message">
+                ご相談内容 <span class="form__required">必須</span>
+              </label>
+              <textarea id="message" name="message" class="form__textarea" rows="6" placeholder="お仏壇の状態やご要望など、お気軽にご記入ください。" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary form__submit">
+              <i class="fas fa-paper-plane"></i> 送信する
+            </button>
+          </form>
+
+          <!-- 右カラム：営業情報 -->
+          <div class="business-info">
+            <div class="business-info__item">
+              <span class="business-info__icon"><i class="fas fa-clock"></i></span>
+              <div>
+                <span class="business-info__label">営業時間</span>
+                <span class="business-info__value">9:00〜18:00</span>
+              </div>
+            </div>
+
+            <div class="business-info__item">
+              <span class="business-info__icon"><i class="fas fa-calendar-check"></i></span>
+              <div>
+                <span class="business-info__label">定休日</span>
+                <span class="business-info__value">年中無休</span>
+              </div>
+            </div>
+
+            <div class="business-info__item">
+              <span class="business-info__icon"><i class="fas fa-map-marked-alt"></i></span>
+              <div>
+                <span class="business-info__label">対応エリア</span>
+                <span class="business-info__value">愛知県全域（岐阜・三重・静岡の一部も対応）</span>
+              </div>
+            </div>
+
+            <div class="business-info__item">
+              <span class="business-info__icon"><i class="fas fa-map-marker-alt"></i></span>
+              <div>
+                <span class="business-info__label">住所</span>
+                <span class="business-info__value">愛知県（サンプル）</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== よくあるご質問 ========== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header fade-in">
+          <h2 class="section__title">お問い合わせについてのよくあるご質問</h2>
+          <p class="section__subtitle">お問い合わせ前にご確認ください</p>
+        </div>
+
+        <div class="faq-list fade-in">
+          <div class="faq-item">
+            <div class="faq-item__question">
+              <span class="faq-item__icon"><i class="fas fa-plus"></i></span>
+              お問い合わせ後、どのくらいで返信がもらえますか？
+            </div>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">
+                お電話の場合は営業時間内にその場でご対応いたします。メール・フォームからのお問い合わせは、翌営業日までにご返信いたします。お急ぎの場合はお電話にてお問い合わせください。
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              <span class="faq-item__icon"><i class="fas fa-plus"></i></span>
+              見積りだけのお問い合わせでも大丈夫ですか？
+            </div>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">
+                もちろんです。お見積りは無料で承っております。お仏壇の状態やご要望をお伺いし、最適なプランをご提案いたします。お気軽にご相談ください。
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              <span class="faq-item__icon"><i class="fas fa-plus"></i></span>
+              お問い合わせの際に準備しておくものはありますか？
+            </div>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">
+                特にご準備いただくものはございません。お仏壇の種類やサイズ、気になる点などをお伝えいただけるとスムーズにご案内できます。お仏壇のお写真をお送りいただければ、より正確なお見積りが可能です。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="cta-section">
+      <div class="cta-section__content">
+        <h2 class="cta-section__title">まずはお気軽にご相談ください</h2>
+        <p class="cta-section__text">お見積りは無料です。お仏壇のお悩み、なんでもご相談ください。</p>
+        <div class="cta-section__phone">
+          <a href="tel:0001234567">
+            <i class="fas fa-phone-alt"></i> 000-123-4567
+          </a>
+        </div>
+        <p class="cta-section__phone-note">受付時間：9:00〜18:00（年中無休）</p>
+        <div class="cta-section__buttons">
+          <a href="contact.html" class="btn btn--primary btn--lg">
+            <i class="fas fa-envelope"></i> メールで問い合わせ
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">
+            <span class="footer__brand-icon"><i class="fas fa-torii-gate"></i></span>
+            仏壇美匠堂
+          </div>
+          <p class="footer__description">
+            愛知県を拠点に、仏壇のクリーニング・修復を専門に行っております。
+            大切なお仏壇を、職人の技と真心で美しく蘇らせます。
+          </p>
+        </div>
+
+        <div>
+          <h3 class="footer__heading">メニュー</h3>
+          <a href="index.html" class="footer__link">ホーム</a>
+          <a href="services.html" class="footer__link">サービス</a>
+          <a href="about.html" class="footer__link">会社紹介</a>
+          <a href="contact.html" class="footer__link">お問い合わせ</a>
+        </div>
+
+        <div>
+          <h3 class="footer__heading">サービス</h3>
+          <a href="services.html#cleaning" class="footer__link">クリーニング</a>
+          <a href="services.html#repair" class="footer__link">修復・修理</a>
+          <a href="services.html#full-restoration" class="footer__link">お洗濯</a>
+          <a href="services.html#visit" class="footer__link">出張お掃除</a>
+        </div>
+
+        <div>
+          <h3 class="footer__heading">お問い合わせ</h3>
+          <a href="tel:0001234567" class="footer__link">
+            <i class="fas fa-phone-alt"></i> 000-123-4567
+          </a>
+          <a href="mailto:info@example.com" class="footer__link">
+            <i class="fas fa-envelope"></i> info@example.com
+          </a>
+          <span class="footer__link">
+            <i class="fas fa-clock"></i> 9:00〜18:00
+          </span>
+          <span class="footer__link">
+            <i class="fas fa-map-marker-alt"></i> 愛知県（サンプル）
+          </span>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2024 仏壇美匠堂. All Rights Reserved.（サンプルサイト）</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== MOBILE CTA ========== -->
+  <div class="mobile-cta">
+    <div class="mobile-cta__inner">
+      <a href="tel:0001234567" class="mobile-cta__btn mobile-cta__btn--phone">
+        <i class="fas fa-phone-alt"></i> 電話する
+      </a>
+      <a href="contact.html" class="mobile-cta__btn mobile-cta__btn--contact">
+        <i class="fas fa-envelope"></i> お問い合わせ
+      </a>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
