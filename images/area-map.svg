@@ -3,14 +3,6 @@
   <desc>Geolonia (https://geolonia.com/) の地図データを利用。愛知県を拠点に中部・近畿エリアに対応。</desc>
 
   <defs>
-    <!-- 拠点マーク用グロー -->
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
     <!-- 対応エリア用ドロップシャドウ -->
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
       <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#3C2415" flood-opacity="0.15"/>
@@ -197,31 +189,14 @@
         <text x="500" y="700" font-size="13" fill="#FFFFFF" font-weight="bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.4)">愛知</text>
       </g>
 
-      <!-- 拠点マーク: 愛知県内に赤い丸、海側にラベル、赤矢印で結ぶ -->
-      <g>
-        <!-- 愛知県内の拠点ポイント -->
-        <circle cx="495" cy="695" r="4" fill="#CC3333" stroke="#FFFFFF" stroke-width="1.5"/>
-        <!-- 赤い矢印ライン（海側のラベルから拠点ポイントへ） -->
-        <line x1="520" y1="735" x2="498" y2="700" stroke="#CC3333" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <!-- 海側の拠点ラベル -->
-        <text x="530" y="745" font-family="'Noto Sans JP', sans-serif" font-size="10" fill="#CC3333" font-weight="bold" text-anchor="middle">拠点</text>
-      </g>
-
     </g>
   </g>
-
-  <!-- 矢印マーカー定義 -->
-  <defs>
-    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" fill="#CC3333">
-      <polygon points="0 0, 8 3, 0 6"/>
-    </marker>
-  </defs>
 
   <!-- 凡例（右下、注釈と重ならない位置） -->
   <g transform="translate(560, 745)" font-family="'Noto Sans JP', sans-serif" font-size="8">
     <text x="0" y="0" font-size="9" fill="#3C2415" font-weight="bold">凡例</text>
     <rect x="0" y="5" width="12" height="8" rx="1.5" fill="#9A7B2F" stroke="#FFFFFF" stroke-width="0.5"/>
-    <text x="16" y="13" fill="#3C2415">拠点（愛知県）</text>
+    <text x="16" y="13" fill="#3C2415">愛知県（本拠地）</text>
     <rect x="0" y="17" width="12" height="8" rx="1.5" fill="#B8963E" stroke="#FFFFFF" stroke-width="0.5"/>
     <text x="16" y="25" fill="#3C2415">対応エリア</text>
     <rect x="0" y="29" width="12" height="8" rx="1.5" fill="#E5E7EB" stroke="#FFFFFF" stroke-width="0.5"/>
