@@ -695,7 +695,6 @@ document.addEventListener('DOMContentLoaded', function () {
   function initScrollUI() {
     var progressBar = document.getElementById('scroll-progress');
     var backToTop = document.getElementById('back-to-top');
-    var floatingLine = document.getElementById('floating-line');
     var ticking = false;
 
     function updateScrollUI() {
@@ -717,14 +716,6 @@ document.addEventListener('DOMContentLoaded', function () {
           backToTop.classList.remove('visible');
         }
       }
-      if (floatingLine) {
-        if (isScrolled) {
-          floatingLine.classList.add('visible');
-        } else {
-          floatingLine.classList.remove('visible');
-        }
-      }
-
       ticking = false;
     }
 
