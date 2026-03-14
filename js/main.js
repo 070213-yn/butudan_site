@@ -626,6 +626,127 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ============================================
+  // 12. ヒーロースライドショー（Apple風クロスフェード）
+  //     - 6秒間隔で自動切り替え
+  //     - インジケータークリックで手動切り替え
+  //     - プログレスバー付きインジケーター
+  // ============================================
+  function initHeroSlideshow() {
+    var slideshow = document.getElementById('hero-slideshow');
+    var indicatorContainer = document.getElementById('slide-indicators');
+    if (!slideshow || !indicatorContainer) return;
+
+    var slides = slideshow.querySelectorAll('.hero-slide');
+    var indicators = indicatorContainer.querySelectorAll('.slide-indicator');
+    if (slides.length === 0) return;
+
+    var currentIndex = 0;
+    var interval = 6000; // 6秒間隔
+    var timer = null;
+
+    function goToSlide(index) {
+      // 現在のスライドを非アクティブに
+      slides[currentIndex].classList.remove('active');
+      indicators[currentIndex].classList.remove('active');
+
+      // 新しいスライドをアクティブに
+      currentIndex = index;
+      slides[currentIndex].classList.add('active');
+      indicators[currentIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+      var next = (currentIndex + 1) % slides.length;
+      goToSlide(next);
+    }
+
+    function startAutoPlay() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(nextSlide, interval);
+    }
+
+    // インジケータークリックで手動切り替え
+    indicators.forEach(function (indicator) {
+      indicator.addEventListener('click', function () {
+        var index = parseInt(indicator.getAttribute('data-slide'), 10);
+        if (index === currentIndex) return;
+        goToSlide(index);
+        // タイマーをリセット
+        startAutoPlay();
+      });
+    });
+
+    // 自動再生開始
+    startAutoPlay();
+
+    // タブ非表示時にタイマー停止、表示時に再開（省電力）
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        if (timer) clearInterval(timer);
+      } else {
+        startAutoPlay();
+      }
+    });
+  }
+
+  // ============================================
+  // 13. スクロールプログレスバー + トップへ戻る + フローティングボタン
+  // ============================================
+  function initScrollUI() {
+    var progressBar = document.getElementById('scroll-progress');
+    var backToTop = document.getElementById('back-to-top');
+    var floatingLine = document.getElementById('floating-line');
+    var ticking = false;
+
+    function updateScrollUI() {
+      var scrollTop = window.scrollY;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+      // プログレスバー更新
+      if (progressBar) {
+        progressBar.style.width = scrollPercent + '%';
+      }
+
+      // 300px以上スクロールしたらボタンを表示
+      var isScrolled = scrollTop > 300;
+      if (backToTop) {
+        if (isScrolled) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }
+      if (floatingLine) {
+        if (isScrolled) {
+          floatingLine.classList.add('visible');
+        } else {
+          floatingLine.classList.remove('visible');
+        }
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollUI);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // トップへ戻るクリック
+    if (backToTop) {
+      backToTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // 初回実行
+    updateScrollUI();
+  }
+
+  // ============================================
   // 全機能の初期化
   // ============================================
   initScrollAnimations();
@@ -639,5 +760,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initGoldParticles();
   initStaggerText();
   initCounterAnimation();
+  initHeroSlideshow();
+  initScrollUI();
 
 });

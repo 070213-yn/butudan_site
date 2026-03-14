@@ -113,6 +113,80 @@
       50% { transform: translate(-50%, -50%) scale(1.15); }
     }
 
+    /* ヒーロースライドショー（Apple風） */
+    .hero-slideshow {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: opacity, transform;
+    }
+    .hero-slide.active {
+      opacity: 1;
+    }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Ken Burnsズーム：ゆっくり拡大しながら切り替わる */
+      animation: kenBurns 18s ease-in-out infinite alternate;
+    }
+    .hero-slide:nth-child(1) img { animation-delay: 0s; }
+    .hero-slide:nth-child(2) img { animation-delay: -6s; }
+    .hero-slide:nth-child(3) img { animation-delay: -12s; }
+
+    @keyframes kenBurns {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.08) translate(-0.5%, -0.5%); }
+    }
+
+    /* スライドショーインジケーター */
+    .slide-indicators {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 20;
+    }
+    .slide-indicator {
+      width: 32px;
+      height: 3px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      position: relative;
+    }
+    .slide-indicator.active {
+      background: rgba(255, 255, 255, 0.5);
+      width: 48px;
+    }
+    .slide-indicator::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #D4A853, #B8963E);
+      border-radius: 2px;
+      transition: none;
+    }
+    .slide-indicator.active::after {
+      animation: indicatorProgress 6s linear forwards;
+    }
+    @keyframes indicatorProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
     /* ガラスモルフィズムバッジ */
     .glass-badge {
       background: rgba(255, 255, 255, 0.08);
@@ -242,6 +316,176 @@
       height: 1px;
       background: linear-gradient(90deg, transparent 5%, #B8963E 30%, #B8963E 70%, transparent 95%);
     }
+
+    /* スクロールプログレスバー */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #9A7B2F, #D4A853, #B8963E);
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* トップへ戻るボタン */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #B8963E, #D4A853);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.3s ease;
+      pointer-events: none;
+      z-index: 50;
+      box-shadow: 0 4px 20px rgba(184, 150, 62, 0.3);
+      border: none;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .back-to-top:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 30px rgba(184, 150, 62, 0.5);
+    }
+
+    /* LINE相談フローティングボタン */
+    .floating-line {
+      position: fixed;
+      bottom: 100px;
+      right: 32px;
+      z-index: 50;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+      pointer-events: none;
+    }
+    .floating-line.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .floating-line a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #06C755;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(6, 199, 85, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .floating-line a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(6, 199, 85, 0.4);
+    }
+
+    /* 修復工程タイムライン */
+    .process-timeline {
+      position: relative;
+    }
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, #B8963E 10%, #B8963E 90%, transparent);
+    }
+    @media (min-width: 768px) {
+      .process-timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 64px;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 768px) {
+      .timeline-item {
+        padding-left: 0;
+        width: 50%;
+      }
+      .timeline-item:nth-child(odd) {
+        padding-right: 60px;
+        text-align: right;
+        margin-left: 0;
+      }
+      .timeline-item:nth-child(even) {
+        padding-left: 60px;
+        margin-left: 50%;
+      }
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 16px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #B8963E, #D4A853);
+      border: 3px solid #FAF6F0;
+      box-shadow: 0 0 0 3px rgba(184, 150, 62, 0.2);
+      z-index: 2;
+    }
+    @media (min-width: 768px) {
+      .timeline-dot {
+        left: auto;
+        right: -9px;
+      }
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: -9px;
+        right: auto;
+      }
+    }
+    .timeline-step {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #B8963E;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    /* SNSアイコンホバー */
+    .sns-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 150, 62, 0.3);
+      transition: all 0.3s ease;
+      color: rgba(255,255,255,0.5);
+    }
+    .sns-icon:hover {
+      border-color: #B8963E;
+      color: #B8963E;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(184, 150, 62, 0.2);
+    }
   </style>
 </head>
 <body class="bg-ivory text-walnut font-sans">
@@ -294,16 +538,26 @@
   <!-- 2. ヒーローセクション（Apple風） -->
   <!-- ============================================ -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- 背景画像 -->
-    <div class="absolute inset-0">
-      <img
-        src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1920&q=80"
-        alt="和室の美しい空間"
-        class="w-full h-full object-cover"
-        loading="eager"
-      >
+    <!-- 背景スライドショー（3枚） -->
+    <div class="hero-slideshow" id="hero-slideshow">
+      <div class="hero-slide active">
+        <img src="images/hero-1.png" alt="職人が仏壇を丁寧に磨いている" loading="eager">
+      </div>
+      <div class="hero-slide">
+        <img src="images/hero-2.png" alt="美しく修復された仏壇" loading="eager">
+      </div>
+      <div class="hero-slide">
+        <img src="images/hero-3.png" alt="出張対応で仏壇を丁寧に搬送" loading="eager">
+      </div>
       <!-- ダークオーバーレイ -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/55 to-black/70"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/55 to-black/70 z-[1]"></div>
+    </div>
+
+    <!-- スライドインジケーター -->
+    <div class="slide-indicators" id="slide-indicators">
+      <button class="slide-indicator active" data-slide="0" aria-label="スライド1"></button>
+      <button class="slide-indicator" data-slide="1" aria-label="スライド2"></button>
+      <button class="slide-indicator" data-slide="2" aria-label="スライド3"></button>
     </div>
 
     <!-- 金色の光源エフェクト -->
@@ -812,6 +1066,65 @@
   </section>
 
   <!-- ============================================ -->
+  <!-- 修復工程タイムライン -->
+  <!-- ============================================ -->
+  <section class="py-24 md:py-32 bg-ivory">
+    <div class="max-w-4xl mx-auto px-6 md:px-10">
+      <div class="text-center mb-20" data-animate>
+        <p class="text-gold text-xs tracking-[0.3em] uppercase mb-4 font-medium">Process</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight">
+          <span class="section-title">修復の<span class="text-gold">流れ</span></span>
+        </h2>
+        <p class="text-walnut/60 mt-6 text-base leading-loose max-w-2xl mx-auto">
+          お問い合わせから修復完了まで、丁寧にサポートいたします
+        </p>
+      </div>
+
+      <div class="process-timeline">
+        <!-- Step 1 -->
+        <div class="timeline-item" data-animate>
+          <div class="timeline-dot"></div>
+          <span class="timeline-step">STEP 01</span>
+          <h3 class="font-serif text-xl font-bold mb-2 tracking-wide">お問い合わせ・無料相談</h3>
+          <p class="text-walnut/60 text-sm leading-loose">
+            お電話またはメールでお気軽にご相談ください。お仏壇の状態をお聞きし、概算をお伝えします。
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-item" data-animate style="transition-delay: 0.1s;">
+          <div class="timeline-dot"></div>
+          <span class="timeline-step">STEP 02</span>
+          <h3 class="font-serif text-xl font-bold mb-2 tracking-wide">現地訪問・お見積もり</h3>
+          <p class="text-walnut/60 text-sm leading-loose">
+            ご自宅に訪問し、お仏壇の状態を直接確認。最適な修復プランと正式なお見積もりをご提示します。
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-item" data-animate style="transition-delay: 0.2s;">
+          <div class="timeline-dot"></div>
+          <span class="timeline-step">STEP 03</span>
+          <h3 class="font-serif text-xl font-bold mb-2 tracking-wide">お預かり・修復作業</h3>
+          <p class="text-walnut/60 text-sm leading-loose">
+            専用車両で丁寧にお預かりし、工房にて職人が一つひとつ手作業で修復。定期的に進捗をご報告します。
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-item" data-animate style="transition-delay: 0.3s;">
+          <div class="timeline-dot"></div>
+          <span class="timeline-step">STEP 04</span>
+          <h3 class="font-serif text-xl font-bold mb-2 tracking-wide">納品・アフターフォロー</h3>
+          <p class="text-walnut/60 text-sm leading-loose">
+            修復完了後、ご自宅へお届け・設置まで対応。お手入れ方法もお伝えし、末永くお使いいただけるようサポートします。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
   <!-- 10. お問い合わせCTA -->
   <!-- ============================================ -->
   <section id="contact" class="relative overflow-hidden">
@@ -890,9 +1203,32 @@
           <!-- 対応エリア一覧 -->
           <div>
             <p class="font-bold text-white mb-5 tracking-wide">対応エリア</p>
-            <p class="text-white/50 text-sm leading-loose">
+            <p class="text-white/50 text-sm leading-loose mb-6">
               愛知県 / 岐阜県 / 三重県 / 静岡県 / 長野県南部 / 滋賀県 / 京都府 / 大阪府北部
             </p>
+
+            <!-- SNSリンク -->
+            <p class="font-bold text-white mb-4 tracking-wide">フォローする</p>
+            <div class="flex gap-3">
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Instagram">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+              </a>
+              <!-- LINE -->
+              <a href="https://line.me/" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="LINE">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                </svg>
+              </a>
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="sns-icon" aria-label="Facebook">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -903,6 +1239,26 @@
       </div>
     </div>
   </footer>
+
+  <!-- スクロールプログレスバー -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- LINE相談フローティングボタン -->
+  <div class="floating-line" id="floating-line">
+    <a href="https://line.me/" target="_blank" rel="noopener noreferrer">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+      </svg>
+      LINE相談
+    </a>
+  </div>
+
+  <!-- トップへ戻るボタン -->
+  <button class="back-to-top" id="back-to-top" aria-label="トップへ戻る">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+    </svg>
+  </button>
 
   <!-- カスタムJavaScript -->
   <script src="js/main.js"></script>
