@@ -317,6 +317,62 @@
       background: linear-gradient(90deg, transparent 5%, #B8963E 30%, #B8963E 70%, transparent 95%);
     }
 
+    /* LINE告知バナー（トップバー） */
+    .line-top-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 60;
+      background: linear-gradient(90deg, #06C755, #00B548);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transform: translateY(0);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .line-top-banner.hidden-banner {
+      transform: translateY(-100%);
+    }
+    .line-top-banner a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .line-top-banner a:hover {
+      text-decoration-color: rgba(255,255,255,0.6);
+    }
+    .line-top-banner .close-banner {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      padding: 4px;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .line-top-banner .close-banner:hover {
+      color: #fff;
+    }
+    /* バナー表示中はヘッダーを下にずらす */
+    body.banner-active #header {
+      top: 40px;
+    }
+    /* バナー表示中はヒーローセクションの上部パディング調整 */
+    body.banner-active .scroll-progress {
+      top: 40px;
+    }
+
     /* スクロールプログレスバー */
     .scroll-progress {
       position: fixed;
@@ -488,7 +544,17 @@
     }
   </style>
 </head>
-<body class="bg-ivory text-walnut font-sans">
+<body class="bg-ivory text-walnut font-sans banner-active">
+
+  <!-- LINE公式アカウント告知バナー -->
+  <div class="line-top-banner" id="line-banner">
+    <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+    </svg>
+    <span>LINE公式アカウントで簡単お問い合わせ</span>
+    <a href="https://line.me/" target="_blank" rel="noopener noreferrer">友だち追加はこちら</a>
+    <button class="close-banner" id="close-line-banner" aria-label="閉じる">&times;</button>
+  </div>
 
   <!-- ============================================ -->
   <!-- 1. ヘッダー（固定ナビ） -->
@@ -795,9 +861,23 @@
             </svg>
           </div>
           <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">仏壇クリーニング</h3>
-          <p class="text-base leading-loose text-walnut/70">
+          <p class="text-base leading-loose text-walnut/70 mb-6">
             長年のほこりや汚れを丁寧に除去。金箔部分や漆塗り面を傷つけず、本来の美しさを取り戻します。定期的なクリーニングで、お仏壇を長く美しく保てます。
           </p>
+          <div class="border-t border-gold/10 pt-5 space-y-2.5">
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">専用洗剤で金箔を傷めない独自技法</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">他社の半額以下の出張費で対応</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">作業前後の写真をお渡し</span>
+            </div>
+          </div>
         </div>
 
         <!-- 仏壇修復・修理 -->
@@ -808,9 +888,23 @@
             </svg>
           </div>
           <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">仏壇修復・修理</h3>
-          <p class="text-base leading-loose text-walnut/70">
+          <p class="text-base leading-loose text-walnut/70 mb-6">
             傷や剥がれ、変色した部分を職人の技で修復。金箔の貼り直しや漆の塗り直しなど、お仏壇の状態に合わせた最適な修復を行います。
           </p>
+          <div class="border-t border-gold/10 pt-5 space-y-2.5">
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">仲介業者なし、職人と直接やりとり</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">修復中の経過報告で安心</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">買い替えの1/3以下の費用で新品同様に</span>
+            </div>
+          </div>
         </div>
 
         <!-- 仏具の修繕 -->
@@ -821,9 +915,76 @@
             </svg>
           </div>
           <h3 class="font-serif text-xl md:text-2xl font-bold mb-5 tracking-wide">仏具の修繕</h3>
-          <p class="text-base leading-loose text-walnut/70">
+          <p class="text-base leading-loose text-walnut/70 mb-6">
             おりん、花瓶、燭台などの仏具も丁寧に修繕。くすみや変色を取り除き、お仏壇全体の調和を保ちます。仏具一つから承ります。
           </p>
+          <div class="border-t border-gold/10 pt-5 space-y-2.5">
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">仏具1点からでも対応可能</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">セットでの修繕なら割引あり</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-gold flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-walnut/60">お手入れ方法のアドバイス付き</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 他社との比較セクション -->
+      <div class="mt-20 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gold/10" data-animate>
+        <h3 class="font-serif text-2xl md:text-3xl font-bold text-center mb-10 tracking-wide">
+          なぜ<span class="text-gold">私たち</span>が選ばれるのか
+        </h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm md:text-base">
+            <thead>
+              <tr class="border-b-2 border-gold/20">
+                <th class="text-left py-4 px-4 text-walnut/50 font-medium w-1/4"></th>
+                <th class="py-4 px-4 text-center">
+                  <span class="inline-block bg-gold/10 text-gold font-bold px-5 py-2 rounded-full text-sm">当社</span>
+                </th>
+                <th class="py-4 px-4 text-center text-walnut/40 font-medium">大手仏壇店</th>
+                <th class="py-4 px-4 text-center text-walnut/40 font-medium">一般業者</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-washi">
+                <td class="py-4 px-4 font-medium">出張費</td>
+                <td class="py-4 px-4 text-center font-bold text-matcha">格安</td>
+                <td class="py-4 px-4 text-center text-walnut/40">高額</td>
+                <td class="py-4 px-4 text-center text-walnut/40">中程度</td>
+              </tr>
+              <tr class="border-b border-washi">
+                <td class="py-4 px-4 font-medium">職人との直接対話</td>
+                <td class="py-4 px-4 text-center font-bold text-matcha">可能</td>
+                <td class="py-4 px-4 text-center text-walnut/40">仲介あり</td>
+                <td class="py-4 px-4 text-center text-walnut/40">業者による</td>
+              </tr>
+              <tr class="border-b border-washi">
+                <td class="py-4 px-4 font-medium">修復中の経過報告</td>
+                <td class="py-4 px-4 text-center font-bold text-matcha">写真付き報告</td>
+                <td class="py-4 px-4 text-center text-walnut/40">なし</td>
+                <td class="py-4 px-4 text-center text-walnut/40">なし</td>
+              </tr>
+              <tr class="border-b border-washi">
+                <td class="py-4 px-4 font-medium">仏具単体の対応</td>
+                <td class="py-4 px-4 text-center font-bold text-matcha">1点からOK</td>
+                <td class="py-4 px-4 text-center text-walnut/40">セット前提</td>
+                <td class="py-4 px-4 text-center text-walnut/40">対応不可が多い</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-medium">お見積もり</td>
+                <td class="py-4 px-4 text-center font-bold text-matcha">無料・現地確認</td>
+                <td class="py-4 px-4 text-center text-walnut/40">有料の場合あり</td>
+                <td class="py-4 px-4 text-center text-walnut/40">電話のみ</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -839,8 +1000,8 @@
         <div class="order-2 md:order-1" data-animate>
           <div class="rounded-2xl overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80"
-              alt="職人の手元"
+              src="images/craftsman.png"
+              alt="仏壇を丁寧に磨く職人"
               class="w-full h-80 md:h-[520px] object-cover"
               loading="lazy"
             >

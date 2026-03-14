@@ -747,6 +747,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ============================================
+  // 14. LINE告知バナーの閉じるボタン
+  // ============================================
+  function initLineBanner() {
+    var banner = document.getElementById('line-banner');
+    var closeBtn = document.getElementById('close-line-banner');
+    if (!banner || !closeBtn) return;
+
+    closeBtn.addEventListener('click', function () {
+      banner.classList.add('hidden-banner');
+      document.body.classList.remove('banner-active');
+    });
+
+    // スクロール300px超えたら自動で非表示
+    var bannerHidden = false;
+    window.addEventListener('scroll', function () {
+      if (!bannerHidden && window.scrollY > 300) {
+        banner.classList.add('hidden-banner');
+        document.body.classList.remove('banner-active');
+        bannerHidden = true;
+      }
+    }, { passive: true });
+  }
+
+  // ============================================
   // 全機能の初期化
   // ============================================
   initScrollAnimations();
@@ -762,5 +786,6 @@ document.addEventListener('DOMContentLoaded', function () {
   initCounterAnimation();
   initHeroSlideshow();
   initScrollUI();
+  initLineBanner();
 
 });
