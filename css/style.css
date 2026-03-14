@@ -1793,6 +1793,384 @@ button {
 }
 
 /* ============================================
+   ICON ANIMATIONS & MICRO-INTERACTIONS
+   ============================================ */
+
+/* --- Keyframe Animations --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.8; filter: brightness(1.3); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-8deg); }
+  30% { transform: rotate(6deg); }
+  45% { transform: rotate(-4deg); }
+  60% { transform: rotate(2deg); }
+  75% { transform: rotate(0deg); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes ringPulse {
+  0% { box-shadow: 0 0 0 0 rgba(196, 162, 101, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(196, 162, 101, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(196, 162, 101, 0); }
+}
+
+@keyframes gentleSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+/* --- Logo Icon Animation --- */
+.header__logo-icon i {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.header__logo:hover .header__logo-icon i {
+  animation: wiggle 0.8s ease-in-out;
+}
+
+.footer__brand-icon i {
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* --- Feature Card Icon Animations --- */
+.card__icon {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.card__icon i {
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card:hover .card__icon {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark));
+  color: var(--color-white);
+  border-color: var(--color-secondary);
+  animation: ringPulse 1s ease-out;
+}
+
+.card:hover .card__icon i {
+  transform: scale(1.2);
+}
+
+/* Different icon animations per feature card */
+.feature-card:nth-child(1):hover .card__icon i {
+  animation: wiggle 0.6s ease-in-out;
+}
+
+.feature-card:nth-child(2):hover .card__icon i {
+  animation: sparkle 1s ease-in-out infinite;
+}
+
+.feature-card:nth-child(3):hover .card__icon i {
+  animation: pulse 0.8s ease-in-out;
+}
+
+/* --- Service Card Link Arrow Animation --- */
+.service-card__link i {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.service-card__link:hover i {
+  transform: translateX(6px);
+}
+
+/* --- Service Card Badge Pulse --- */
+.service-card__badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card__badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* --- Process Step Number Animation --- */
+.process-step__number {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.process-step:hover .process-step__number {
+  transform: scale(1.15);
+  background: var(--color-secondary);
+  box-shadow: 0 4px 16px rgba(196, 162, 101, 0.4);
+}
+
+/* --- Testimonial Star Animation --- */
+.stars i {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.testimonial:hover .stars i:nth-child(1) { animation: starTwinkle 0.6s ease 0s; }
+.testimonial:hover .stars i:nth-child(2) { animation: starTwinkle 0.6s ease 0.1s; }
+.testimonial:hover .stars i:nth-child(3) { animation: starTwinkle 0.6s ease 0.2s; }
+.testimonial:hover .stars i:nth-child(4) { animation: starTwinkle 0.6s ease 0.3s; }
+.testimonial:hover .stars i:nth-child(5) { animation: starTwinkle 0.6s ease 0.4s; }
+
+/* --- Testimonial Avatar Hover --- */
+.testimonial__avatar {
+  transition: all 0.4s ease;
+}
+
+.testimonial:hover .testimonial__avatar {
+  background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+/* --- Area List Item Hover --- */
+.area-list__item {
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.area-list__item:hover {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border-color: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(196, 162, 101, 0.3);
+}
+
+/* --- CTA Phone Icon Animation --- */
+.cta-section__phone i {
+  display: inline-block;
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+/* --- Contact Method Icon Animation --- */
+.contact-method__icon {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contact-method:hover .contact-method__icon {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark));
+  color: var(--color-white);
+  border-color: var(--color-secondary);
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.contact-method {
+  transition: all 0.3s ease;
+}
+
+.contact-method:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* --- Reason Card Icon Animation --- */
+.reason-card__icon {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reason-card:hover .reason-card__icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 16px rgba(196, 162, 101, 0.3);
+}
+
+.reason-card {
+  transition: all 0.3s ease;
+}
+
+.reason-card:hover {
+  transform: translateY(-3px);
+}
+
+/* --- Button Hover Effects Enhanced --- */
+.btn i {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn:hover i {
+  transform: scale(1.2);
+}
+
+.btn--primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* --- FAQ Accordion Icon Smooth Animation --- */
+.faq-item__icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+}
+
+.faq-item:hover .faq-item__icon {
+  color: var(--color-primary);
+}
+
+.faq-item__question {
+  transition: color 0.3s ease;
+}
+
+/* --- Before/After Arrow Bounce --- */
+.before-after__arrow i {
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* --- Mobile CTA Button Animations --- */
+.mobile-cta__btn i {
+  display: inline-block;
+}
+
+.mobile-cta__btn--phone i {
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+/* --- Service Detail Image Icon --- */
+.service-detail__image i {
+  display: inline-block;
+  transition: all 0.5s ease;
+}
+
+.service-detail__image:hover i {
+  transform: scale(1.2);
+  color: var(--color-secondary);
+}
+
+/* --- Hero Badge Shimmer --- */
+.hero__badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+/* --- Feature Card Number Pop --- */
+.feature-card__number {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feature-card:hover .feature-card__number {
+  transform: scale(1.15) rotate(-5deg);
+  box-shadow: 0 4px 12px rgba(196, 162, 101, 0.4);
+}
+
+/* --- Service Detail Tag Shimmer --- */
+.service-detail__tag {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-detail__tag::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* --- Section Title Underline Animation --- */
+.section__title::after {
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 60px;
+}
+
+.section__header.visible .section__title::after {
+  width: 80px;
+}
+
+/* --- Card Lift Enhancement --- */
+.card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Nav Link Hover Bounce --- */
+.nav__link::after {
+  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- Business Info Icon Animation --- */
+.business-info__icon i {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.business-info__item:hover .business-info__icon i {
+  transform: scale(1.2);
+  color: var(--color-secondary-dark);
+}
+
+/* --- Map Placeholder Icon Pulse --- */
+.map-placeholder i {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* --- Price Table Row Hover --- */
+.price-table tbody tr {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.price-table tbody tr:hover {
+  background: var(--color-bg);
+}
+
+/* ============================================
    SCROLL ANIMATIONS
    ============================================ */
 .fade-in {
@@ -1860,6 +2238,213 @@ button {
 .mb-md { margin-bottom: var(--space-md); }
 .mb-lg { margin-bottom: var(--space-lg); }
 .mb-xl { margin-bottom: var(--space-xl); }
+
+/* ============================================
+   MOBILE OPTIMIZATION - No Horizontal Scroll
+   ============================================ */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Ensure all elements respect viewport width */
+*, *::before, *::after {
+  max-width: 100vw;
+}
+
+.container, .header__inner, .mobile-cta__inner {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  /* Reduce section padding on mobile */
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  /* Hero mobile optimization */
+  .hero {
+    min-height: 70vh;
+    padding: calc(var(--header-height) + var(--space-lg)) var(--space-sm) var(--space-xl);
+  }
+
+  .hero__title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .hero__description {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* CTA section mobile */
+  .cta-section {
+    padding: var(--space-2xl) var(--space-sm);
+  }
+
+  .cta-section__phone {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+
+  .cta-section__buttons .btn {
+    width: 100%;
+  }
+
+  /* Price table mobile - horizontal scroll prevention */
+  .price-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .price-table th,
+  .price-table td {
+    padding: var(--space-sm);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+  }
+
+  /* Contact grid mobile */
+  .contact-methods {
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact-method {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  /* Form mobile */
+  .form {
+    padding: var(--space-lg);
+  }
+
+  /* Breadcrumb mobile */
+  .breadcrumb {
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  /* Before/After mobile */
+  .before-after__arrow {
+    transform: rotate(90deg);
+  }
+
+  /* Area map mobile */
+  .area-map {
+    aspect-ratio: 16/9;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  /* Service detail mobile */
+  .service-detail__image {
+    aspect-ratio: 16/9;
+  }
+
+  /* Page header mobile */
+  .page-header {
+    padding: calc(var(--header-height) + var(--space-lg)) 0 var(--space-lg);
+  }
+
+  /* Footer mobile tweaks */
+  .footer {
+    padding: var(--space-2xl) 0 var(--space-md);
+  }
+
+  /* Reduce icon animation intensity on mobile for performance */
+  .footer__brand-icon i {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Touch-friendly tap targets */
+  .faq-item__question {
+    padding: var(--space-md) var(--space-xs);
+    min-height: 54px;
+  }
+
+  /* Service card link bigger tap target */
+  .service-card__link {
+    padding: var(--space-sm) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens */
+  .container {
+    padding: 0 var(--space-sm);
+  }
+
+  .hero__badge {
+    font-size: 0.75rem;
+    padding: 6px var(--space-sm);
+  }
+
+  .section__title {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+
+  .section__subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  .card {
+    padding: var(--space-md);
+  }
+
+  .feature-card {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .testimonial {
+    padding: var(--space-lg);
+  }
+
+  .btn--lg {
+    padding: 1rem 1.5rem;
+    font-size: var(--font-size-md);
+  }
+
+  /* Footer grid on very small screens */
+  .footer__grid {
+    gap: var(--space-lg);
+  }
+
+  .footer__brand {
+    font-size: var(--font-size-lg);
+  }
+
+  /* Process step text */
+  .process-step__title {
+    font-size: var(--font-size-md);
+  }
+
+  .process-step__number {
+    width: 48px;
+    height: 48px;
+    font-size: var(--font-size-lg);
+  }
+
+  /* Header logo smaller on tiny screens */
+  .header__logo {
+    font-size: var(--font-size-lg);
+  }
+
+  .header__logo-icon {
+    font-size: 1.2em;
+  }
+}
 
 /* Screen reader only */
 .sr-only {

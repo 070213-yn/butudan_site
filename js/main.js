@@ -199,7 +199,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================================
-  // 7. Contact Form Basic Validation (demo site)
+  // 7. Icon Entrance Animations on Scroll
+  // ============================================================
+  if (!prefersReducedMotion) {
+    const iconElements = document.querySelectorAll(
+      '.card__icon, .contact-method__icon, .reason-card__icon, .process-step__number, .feature-card__number'
+    );
+
+    if (iconElements.length > 0) {
+      const iconObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      iconElements.forEach((el) => {
+        iconObserver.observe(el);
+      });
+    }
+
+    // Parallax-like subtle float on hero badge
+    const heroBadge = document.querySelector('.hero__badge');
+    if (heroBadge) {
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        if (scrollY < 600) {
+          heroBadge.style.transform = `translateY(${scrollY * 0.1}px)`;
+        }
+      }, { passive: true });
+    }
+  }
+
+  // ============================================================
+  // 8. Contact Form Basic Validation (demo site)
   // ============================================================
   const contactForm = document.querySelector('form');
 
