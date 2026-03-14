@@ -758,16 +758,6 @@ document.addEventListener('DOMContentLoaded', function () {
       banner.classList.add('hidden-banner');
       document.body.classList.remove('banner-active');
     });
-
-    // スクロール300px超えたら自動で非表示
-    var bannerHidden = false;
-    window.addEventListener('scroll', function () {
-      if (!bannerHidden && window.scrollY > 300) {
-        banner.classList.add('hidden-banner');
-        document.body.classList.remove('banner-active');
-        bannerHidden = true;
-      }
-    }, { passive: true });
   }
 
   // ============================================
