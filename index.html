@@ -646,7 +646,7 @@
     ></div>
 
     <!-- テキストコンテンツ -->
-    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto" style="padding-top: 80px;">
       <!-- サブコピー上 -->
       <p
         class="text-sm md:text-base tracking-[0.3em] mb-6 font-sans font-light"
@@ -807,38 +807,29 @@
         </h2>
       </div>
 
-      <!-- 2枚並列表示 -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14" data-animate>
-        <!-- Before -->
-        <div class="text-center">
-          <div class="relative rounded-2xl overflow-hidden mb-5 border border-gold/20">
-            <img
-              src="images/before.png"
-              alt="修復前の仏壇"
-              class="w-full aspect-[4/5] object-cover"
-              loading="lazy"
-            >
-            <div class="absolute top-5 left-5 bg-walnut/70 text-white px-6 py-2 rounded-full text-sm font-bold tracking-[0.15em] backdrop-blur-sm">
-              Before
+      <!-- スライダー比較 -->
+      <div class="max-w-2xl mx-auto" data-animate>
+        <div id="ba-slider" class="relative rounded-2xl overflow-hidden border border-gold/20 cursor-ew-resize select-none" style="aspect-ratio: 4/5;">
+          <!-- Before（下レイヤー） -->
+          <img src="images/before.png" alt="修復前の仏壇" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+          <!-- After（上レイヤー、clipで制御） -->
+          <div class="absolute inset-0" id="ba-after" style="clip-path: inset(0 50% 0 0);">
+            <img src="images/after.png" alt="修復後の仏壇" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+          </div>
+          <!-- ラベル -->
+          <div class="absolute top-5 left-5 bg-walnut/70 text-white px-5 py-2 rounded-full text-sm font-bold tracking-[0.15em] backdrop-blur-sm z-10">Before</div>
+          <div class="absolute top-5 right-5 bg-gold/80 text-white px-5 py-2 rounded-full text-sm font-bold tracking-[0.15em] backdrop-blur-sm z-10">After</div>
+          <!-- ハンドル -->
+          <div id="ba-handle" class="absolute top-0 bottom-0 z-20 flex items-center" style="left: 50%; transform: translateX(-50%);">
+            <div class="w-0.5 h-full bg-white/80"></div>
+            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-walnut" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+              </svg>
             </div>
           </div>
-          <p class="text-walnut/60 text-base md:text-lg tracking-wide">修復前</p>
         </div>
-        <!-- After -->
-        <div class="text-center">
-          <div class="relative rounded-2xl overflow-hidden mb-5 border border-gold/20">
-            <img
-              src="images/after.png"
-              alt="修復後の仏壇"
-              class="w-full aspect-[4/5] object-cover"
-              loading="lazy"
-            >
-            <div class="absolute top-5 left-5 bg-gold/80 text-white px-6 py-2 rounded-full text-sm font-bold tracking-[0.15em] backdrop-blur-sm">
-              After
-            </div>
-          </div>
-          <p class="text-walnut/60 text-base md:text-lg tracking-wide">修復後</p>
-        </div>
+        <p class="text-center text-walnut/50 text-sm mt-4 tracking-wide">左右にスライドして比較</p>
       </div>
 
       <p class="text-center mt-12 text-lg md:text-xl text-walnut/70 leading-relaxed tracking-wide" data-animate>
@@ -944,12 +935,14 @@
       </div>
 
       <!-- 他社との比較セクション -->
-      <div class="mt-20 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gold/10" data-animate>
+      <div class="mt-20" data-animate>
         <h3 class="font-serif text-2xl md:text-3xl font-bold text-center mb-10 tracking-wide">
           なぜ<span class="text-gold">私たち</span>が選ばれるのか
         </h3>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm md:text-base">
+
+        <!-- PC表示: テーブル -->
+        <div class="hidden md:block bg-white rounded-3xl p-12 shadow-sm border border-gold/10">
+          <table class="w-full text-base">
             <thead>
               <tr class="border-b-2 border-gold/20">
                 <th class="text-left py-4 px-4 text-walnut/50 font-medium w-1/4"></th>
@@ -987,6 +980,46 @@
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- スマホ表示: カード形式 -->
+        <div class="md:hidden space-y-4">
+          <!-- 出張費 -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gold/10">
+            <p class="text-xs text-walnut/40 tracking-wider mb-2">出張費</p>
+            <p class="text-lg font-bold text-matcha mb-3">当社: 格安</p>
+            <div class="flex gap-4 text-sm text-walnut/40">
+              <span>大手: 高額</span>
+              <span>一般: 中程度</span>
+            </div>
+          </div>
+          <!-- 職人との直接対話 -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gold/10">
+            <p class="text-xs text-walnut/40 tracking-wider mb-2">職人との直接対話</p>
+            <p class="text-lg font-bold text-matcha mb-3">当社: 可能</p>
+            <div class="flex gap-4 text-sm text-walnut/40">
+              <span>大手: 仲介あり</span>
+              <span>一般: 業者による</span>
+            </div>
+          </div>
+          <!-- 修復中の経過報告 -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gold/10">
+            <p class="text-xs text-walnut/40 tracking-wider mb-2">修復中の経過報告</p>
+            <p class="text-lg font-bold text-matcha mb-3">当社: LINEで随時確認可能</p>
+            <div class="flex gap-4 text-sm text-walnut/40">
+              <span>大手: なし</span>
+              <span>一般: なし</span>
+            </div>
+          </div>
+          <!-- 仏具単体の対応 -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gold/10">
+            <p class="text-xs text-walnut/40 tracking-wider mb-2">仏具単体の対応</p>
+            <p class="text-lg font-bold text-matcha mb-3">当社: 1点からOK</p>
+            <div class="flex gap-4 text-sm text-walnut/40">
+              <span>大手: セット前提</span>
+              <span>一般: 対応不可が多い</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

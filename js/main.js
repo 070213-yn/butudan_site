@@ -146,41 +146,38 @@ document.addEventListener('DOMContentLoaded', function () {
   // 4. Before/After スライダー
   // ============================================
   function initBeforeAfterSlider() {
-    var container = document.getElementById('before-after-slider');
+    var container = document.getElementById('ba-slider');
     if (!container) return;
 
-    var afterImage = container.querySelector('.after-image');
-    var handle = container.querySelector('.slider-handle');
-    if (!afterImage || !handle) return;
+    var afterLayer = document.getElementById('ba-after');
+    var handle = document.getElementById('ba-handle');
+    if (!afterLayer || !handle) return;
 
     var isDragging = false;
 
-    // 初期位置を50%に設定
-    setSliderPosition(50);
-
-    function setSliderPosition(percent) {
-      // 0〜100の範囲にクランプ
+    function setPosition(percent) {
       percent = Math.max(0, Math.min(100, percent));
-      afterImage.style.clipPath = 'inset(0 0 0 ' + percent + '%)';
+      // After画像のclip-path: 左からpercent%まで表示
+      afterLayer.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
       handle.style.left = percent + '%';
     }
 
-    function getPercentFromEvent(e) {
+    function getPercent(e) {
       var rect = container.getBoundingClientRect();
       var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      var x = clientX - rect.left;
-      return (x / rect.width) * 100;
+      return ((clientX - rect.left) / rect.width) * 100;
     }
 
     // マウス操作
-    handle.addEventListener('mousedown', function (e) {
+    container.addEventListener('mousedown', function (e) {
       e.preventDefault();
       isDragging = true;
+      setPosition(getPercent(e));
     });
 
     document.addEventListener('mousemove', function (e) {
       if (!isDragging) return;
-      setSliderPosition(getPercentFromEvent(e));
+      setPosition(getPercent(e));
     });
 
     document.addEventListener('mouseup', function () {
@@ -188,19 +185,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // タッチ操作
-    handle.addEventListener('touchstart', function (e) {
-      e.preventDefault();
+    container.addEventListener('touchstart', function (e) {
       isDragging = true;
-    });
+      setPosition(getPercent(e));
+    }, { passive: true });
 
     document.addEventListener('touchmove', function (e) {
       if (!isDragging) return;
-      setSliderPosition(getPercentFromEvent(e));
+      e.preventDefault();
+      setPosition(getPercent(e));
     }, { passive: false });
 
     document.addEventListener('touchend', function () {
       isDragging = false;
     });
+
+    // 初期位置
+    setPosition(50);
   }
 
   // ============================================
