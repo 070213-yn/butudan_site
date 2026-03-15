@@ -810,11 +810,11 @@
       <!-- スライダー比較 -->
       <div class="max-w-2xl mx-auto" data-animate>
         <div id="ba-slider" class="relative rounded-2xl overflow-hidden border border-gold/20 cursor-ew-resize select-none" style="aspect-ratio: 4/5;">
-          <!-- Before（下レイヤー） -->
-          <img src="images/before.png" alt="修復前の仏壇" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
-          <!-- After（上レイヤー、clipで制御） -->
+          <!-- After（下レイヤー・右側） -->
+          <img src="images/after.png" alt="修復後の仏壇" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+          <!-- Before（上レイヤー・左側、clipで制御） -->
           <div class="absolute inset-0" id="ba-after" style="clip-path: inset(0 50% 0 0);">
-            <img src="images/after.png" alt="修復後の仏壇" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+            <img src="images/before.png" alt="修復前の仏壇" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
           </div>
           <!-- ラベル -->
           <div class="absolute top-5 left-5 bg-walnut/70 text-white px-5 py-2 rounded-full text-sm font-bold tracking-[0.15em] backdrop-blur-sm z-10">Before</div>
@@ -824,7 +824,7 @@
             <div class="w-0.5 h-full bg-white/80"></div>
             <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
               <svg class="w-5 h-5 text-walnut" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7M9 19l7-7-7-7"/>
               </svg>
             </div>
           </div>
