@@ -773,6 +773,39 @@ body.menu-open {
   color: var(--gold-main);
 }
 
+/* 金箔星画像（お客様の声セクション） */
+.gold-star-img {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+
+/* 金箔チェックマーク画像（サービスカード） */
+.gold-check-img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* 金箔セパレーター画像（セクション区切り） */
+.gold-separator-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.7;
+}
+
+/* 金箔ドット画像（スライドインジケーター） */
+.slide-indicator img.slide-dot-img {
+  width: 10px;
+  height: 10px;
+  opacity: 0.5;
+}
+.slide-indicator.active img.slide-dot-img {
+  opacity: 1;
+}
+
 /* お客様の声カードのホバー */
 .testimonial-card {
   transition: transform var(--duration-fast) var(--ease-premium),
